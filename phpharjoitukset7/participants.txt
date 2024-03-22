@@ -1,0 +1,28 @@
+Nimi: Totoro
+Sähköpostiosoite: totoro@gmail.com
+Puhelinnumero: 1234567
+Yritys: Totoro Oy
+Esittelyteksti: Totoro
+Rooli: performer
+
+Nimi: Lina
+Sähköpostiosoite: lina@gmail.com
+Puhelinnumero: 
+Yritys: Lina Oy
+Esittelyteksti: Lorem ipsum
+Rooli: organizer
+
+Nimi: Lina
+Sähköpostiosoite: lina@gmail.com
+Puhelinnumero: 
+Yritys: Lina Oy
+Esittelyteksti: Lorem ipsum
+Rooli: organizer
+
+Nimi: Lina
+Sähköpostiosoite: lina@gmail.com
+Puhelinnumero: 
+Yritys: Lina Oy
+Esittelyteksti: Lorem ipsum
+Rooli: organizer
+
