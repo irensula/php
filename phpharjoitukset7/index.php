@@ -9,10 +9,10 @@
             </div>
             <div class="input-container">
                 <label for="text">Sisältö</label><br>
-                <textarea type="text" name="text" id="text" cols="50"></textarea>
+                <textarea type="text" name="text" id="text" cols="60" rows="10"></textarea>
             </div>
             
-            <button type="submit">Kirjoittaa</button>
+            <button class="button-orange" role="button" type="submit">Kirjoittaa</button>
         </form>
     </div>
 </body>

@@ -31,7 +31,8 @@
             </div>
         </fieldset>
 
-        <input type="submit" value="Lähetä">
+        <!-- <input class="button-orange" type="submit" value="Lähetä"> -->
+        <button class="button-orange" type="submit">Lähetä</button>
     </form>
 
     <?php

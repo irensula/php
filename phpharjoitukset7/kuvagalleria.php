@@ -4,7 +4,8 @@
         Select image to upload:
             <label for="fileToUpload"></label>
             <input type="file" name="fileToUpload" id="fileToUpload">
-            <input type="submit" value="Upload Image" name="submit">
+            <!-- <input class="button-orange" type="submit" value="Upload Image" name="submit"> -->
+            <button class="button-orange" type="submit">Lähetä</button>
     </form>
 </body>
 </html>

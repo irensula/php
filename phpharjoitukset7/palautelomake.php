@@ -6,7 +6,7 @@
         <input type="number" name="grade" id="grade" min=1 max=5>
         <label for="feedback">Palaute</label>
         <input type="text" name="feedback" id="feedback">
-        <button type="submit">Kirjoita</button>
+        <button class="button-orange" type="submit">Kirjoita</button>
     </form>
 </body>
 </html>
