@@ -1,0 +1,105 @@
+#index-body {
+    background-image: url("http://localhost/phpharjoitukset7/photo-text.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+#tapahtumat-body {
+    background-image: url("http://localhost/phpharjoitukset7/street.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#feedback-body {
+    height: 100vh;
+    background: rgb(0,0,0);
+    background: linear-gradient(153deg, rgba(0,0,0,1) 0%, rgba(14,9,121,1) 35%, rgba(255,0,215,1) 100%);
+}
+.container {
+    font-family: "Instrument Sans", sans-serif;
+    width: 33%;
+    padding: 50px;
+    margin: 50px auto;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+}
+form {
+    font-size: 25px;
+}
+.tapahtumat-container {
+    font-family: "Instrument Sans", sans-serif;
+    width: 33%;
+    padding: 50px;
+    margin: 50px auto;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    color: #fff;
+    font-size: 18px;
+}
+.feedback-container {
+    font-family: "Instrument Sans", sans-serif;
+    width: 33%;
+    padding: 50px;
+    margin: 50px auto;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    color: #fff;
+    font-size: 18px;
+}
+.title {
+    font-size: 40px;
+    margin-bottom: 50px;
+}
+.input-container {
+    margin-bottom: 30px;
+}
+input {
+    width: 300px;
+    height: 30px;
+    margin-top: 10px;
+    border: none;
+}
+.input-radio {
+    background-color: red;
+} 
+textarea {
+    margin-top: 10px;
+}
+.galery-image img {
+    width: 300px;
+}
+/* button */
+
+.button-orange {
+  margin: 10px;
+  padding: 15px 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  display: block;
+  border: 0px;
+  font-weight: 700;
+  box-shadow: 0px 0px 14px -7px #f09819;
+  background-image: linear-gradient(45deg, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-orange:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.button-orange:active {
+  transform: scale(0.95);
+}
+
+/* backdrop-filter: blur(5px); */

@@ -18,18 +18,3 @@ Puhelinnumero:
 Yritys: Lina Oy
 Esittelyteksti: Lorem ipsum
 Rooli: organizer
-
-Nimi: Lina
-Sähköpostiosoite: lina@gmail.com
-Puhelinnumero: 
-Yritys: Lina Oy
-Esittelyteksti: Lorem ipsum
-Rooli: organizer
-
-Nimi: Tomato
-Sähköpostiosoite: jane@gmail.com
-Puhelinnumero: 4561236
-Yritys: Tomato
-Esittelyteksti: Tomato
-Rooli: performer
-

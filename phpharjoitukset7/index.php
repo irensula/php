@@ -1,5 +1,6 @@
-<?php include "header.php"; ?>
+<?php require "header.php"; ?>
 
+<body id="index-body">
     <div class="container">
         <h1 class="title">Tiedoston kirjoittaminen</h1>
         <form action="index.php" method="get">
