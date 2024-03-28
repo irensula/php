@@ -24,9 +24,6 @@
     backdrop-filter: blur(10px);
     border-radius: 15px;
 }
-form {
-    font-size: 25px;
-}
 .tapahtumat-container {
     font-family: "Instrument Sans", sans-serif;
     width: 33%;
@@ -36,6 +33,9 @@ form {
     border-radius: 15px;
     color: #fff;
     font-size: 18px;
+}
+.tapahtumat-container fieldset {
+    margin: 25px 0 50px 0;
 }
 .feedback-container {
     font-family: "Instrument Sans", sans-serif;
@@ -53,18 +53,29 @@ form {
 }
 .input-container {
     margin-bottom: 30px;
+    font-size: 25px;
+}
+label {
+    padding-right: 20px;
 }
 input {
     width: 300px;
     height: 30px;
     margin-top: 10px;
     border: none;
+    border-radius: 5px;
 }
 .input-radio {
-    background-color: red;
-} 
+    width: 50px;
+    height: 15px;
+}
+input[type='radio'] {
+    accent-color: #232323;
+}
 textarea {
     margin-top: 10px;
+    border: none;
+    border-radius: 5px;
 }
 .galery-image img {
     width: 300px;
@@ -101,5 +112,3 @@ textarea {
 .button-orange:active {
   transform: scale(0.95);
 }
-
-/* backdrop-filter: blur(5px); */
