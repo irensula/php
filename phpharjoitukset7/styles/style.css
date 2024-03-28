@@ -1,9 +1,9 @@
 #index-body {
-    background-image: url("http://localhost/phpharjoitukset7/photo-text.jpg");
+    height: 100vh;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url("http://localhost/phpharjoitukset7/photo-text.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: rgba(255, 255, 255, 0.4);
 }
 #tapahtumat-body {
     background-image: url("http://localhost/phpharjoitukset7/street.jpg");
