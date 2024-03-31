@@ -1,17 +1,21 @@
 <?php require "header.php"; ?>
 
 <body id="feedback-body">
-    <div class="feedback-container">
-        <form action="palautelomake.php" method="get">
-            <label for="name">Nimesi:</label>
-            <input type="text" name="name" id="name"><br>
-            <label for="grade">Arvosi:</label>
-            <input type="number" name="grade" id="grade" min=1 max=5><br>
-            <label for="feedback">Palaute</label>
-            <input type="text" name="feedback" id="feedback">
-            <button class="button-orange" type="submit">Kirjoita</button>
-        </form>
-    </div>
+        <div class="feedback-container">
+            <h1 class="title">Palautelomake</h1>
+            <form action="palautelomake.php" method="get">
+                <label for="name">Nimesi:</label>
+                <input type="text" name="name" id="name"><br>
+
+                <label for="grade">Arvosi:</label>
+                <input type="number" name="grade" id="grade" min=1 max=5><br>
+                
+                <label for="feedback">Palaute</label>
+                <input type="text" name="feedback" id="feedback">
+                
+                <button class="button-blue" type="submit">Kirjoita</button>
+            </form>
+        </div>
 </body>
 </html>
 

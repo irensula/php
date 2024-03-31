@@ -3,7 +3,7 @@
 <body id="tapahtumat-body">
     <div class="tapahtumat-container">
         <h1 class="title">Rekisteröityminen</h1>
-        <form action="tapahtumat.php" method="get">
+        <form class="tapahtumat-form" action="tapahtumat.php" method="get">
             
             <label for="name">Nimi:</label>
             <input type="text" name="name" id="name" maxlength=30><br>
