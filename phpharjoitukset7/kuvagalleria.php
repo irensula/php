@@ -12,6 +12,7 @@
 
 <body id="galery-body">
   <div class="container">
+    <h2 class="title">Kuvagalleria</h2>
     <form action="kuvagalleria.php" method="post" enctype="multipart/form-data">
         Select image to upload:
             <label for="fileToUpload"></label>
