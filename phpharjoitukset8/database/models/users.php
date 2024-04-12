@@ -33,9 +33,9 @@ function getUserById($id){
     return $all;
 }
 
-function updateUserInfo($username, $password, $email, $birthyear, $id){
+function updateUserInfo($username, $password, $email, $birthyear, $userID){
     $pdo = connectDB();
-    $data = [$username, $password, $email, $birthyear, $id];
+    $data = [$username, $password, $email, $birthyear, $userID];
     $sql = "UPDATE users SET username = ?, password = ?, email = ?, birthyear = ? WHERE userID = ?";
     $stm = $pdo->prepare($sql);
     return $stm->execute($data);

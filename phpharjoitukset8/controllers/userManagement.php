@@ -48,7 +48,7 @@ function logoutController(){
     header("Location: /login"); // forward eli uudelleenohjaus
     die();
 }
-///////////////////////
+
 function viewUserPageController(){
     if(isset($_SESSION['userID'])){
         $id = $_SESSION['userID'];
@@ -71,7 +71,7 @@ function editUserInfoController(){
     
     if($user){
         $id = $user['userID'];
-        $name = $user['username'];
+        $username = $user['username'];
         $password = $user['password'];
         $email = $user['email'];
         $birthyear = $user['birthyear'];
@@ -85,22 +85,22 @@ function editUserInfoController(){
 }
 
 function updateUserInfoController(){
-    if(isset($_POST['username'], $_POST['password'], $_POST['email'], $_POST['birthyear'])){
+    if(isset($_POST['username'], $_POST['password'], $_POST['email'], $_POST['birthyear'], $_POST['userID'])){
         $username = cleanUpInput($_POST['username']);
         $password = cleanUpInput($_POST['password']);
         $email = cleanUpInput($_POST['email']);
         $birthyear = cleanUpInput($_POST['birthyear']);
-        $id = cleanUpInput($_POST["id"]);
+        $id = cleanUpInput($_POST["userID"]);
 
         try{
             updateUserInfo($username, $password, $email, $birthyear, $id);
-            header("Location: /");    
+            header("Location: /user_page");    
         } catch (PDOException $e){
                 echo "Virhe reseptista päivitettäessä: " . $e->getMessage();
         }
      } 
     else {
-        header("Location: /");
+        header("Location: /user_page");
         exit;
     }
 }

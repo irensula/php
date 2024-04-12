@@ -6,20 +6,24 @@
 
 <form  action="/update_userInfo" method="post">
 
-    <label for="username">Nimimerkki:</label> 
-    <input id="username" type="text" name="username" maxlength=30>
+    <label for="username">Nimimerkki: </label> 
+    <input id="username" type="text" name="username" maxlength=30 value="<?=$username?>">
 
-    <label for="email">Sähköposti:</label>         
-    <input id="email" type="email" name="email" maxlength=30>
+    <label for="email">Sähköposti: </label>         
+    <input id="email" type="email" name="email" maxlength=30 value="<?=$email?>">
 
-    <label for="birthyear">Syntymävuosi:</label>         
-    <input id="birthyear" type="number" name="birthyear" min="1950" max="2024">
+    <label for="birthyear">Syntymävuosi: </label>         
+    <input id="birthyear" type="number" name="birthyear" min="1950" max="2024" value="<?=$birthyear?>">
 
-    <label for="pword">Salasana:</label>
-    <input id="pword" type="password" name="password" maxlength=25>
+    <label for="pword">Salasana: </label>
+    <input id="pword" type="password" name="password" maxlength=25 value="<?=$password?>">
+
+    <label for="userID">ID: </label>
+    <input id="userID" type="text" name="userID" maxlength=25 value="<?=$id?>">
 
     <input id="sendbutton" type="submit" value="Lähetä">
 </form>
+
 </div>
 
 <?php require "partials/footer.php"; ?>

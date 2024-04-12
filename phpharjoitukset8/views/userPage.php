@@ -1,6 +1,6 @@
 <?php require "partials/head.php"; ?>
 
-<h2>Tietosi</h2>
+<h2 class="centered">Tietosi</h2>
 
 <?php
 
@@ -8,7 +8,7 @@
 
         $userID = $_SESSION["userID"]; ?>
 
-        <div class="container">
+        <div class="centered">
 
             <p id="username">Nimimerkki:<?=$userInfo["username"]?></p> 
             <p id="email">Sähköposti:<?=$userInfo["email"]?></p>         
