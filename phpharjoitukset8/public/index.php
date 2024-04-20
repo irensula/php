@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+
 set_include_path(dirname(__FILE__) . '/../');
 
 $route = explode("?", $_SERVER["REQUEST_URI"])[0];
@@ -8,7 +10,7 @@ $method = strtolower($_SERVER["REQUEST_METHOD"]);
 require_once 'libraries/auth.php';
 require_once 'controllers/userManagement.php';
 require_once 'controllers/recipeManagement.php';
-// etusivu, kategoriasivu, omat tiedot-sivu yhteystietosivu
+
 switch($route) {
     case "/":
         viewRecipesController();
@@ -75,5 +77,5 @@ switch($route) {
     break;
 
     default:
-      echo "404";
+      echo "Error 404";
   }

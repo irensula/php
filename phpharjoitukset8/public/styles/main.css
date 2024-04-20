@@ -1,0 +1,95 @@
+header {
+    height: 100vh;
+    background-image: url('https://images.unsplash.com/photo-1577308856961-8e9ec50d0c67?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    font-family: "Open Sans", sans-serif;
+}
+
+.header-container {
+    width: 100%;
+    height: 100vh ;
+    display: flex;
+}
+.title-container {
+    width: calc(50% - 10em);
+    height: 100%;
+    background: #fff;
+    padding-left: 6em;
+}
+.title-container p {
+    width: 30em;
+    line-height: 25px;
+    font-size: 18px;
+}
+.img-container {
+    width: calc(50% + 10em);
+    height: 100%;
+    border-left: 150px solid #fff;
+    border-bottom: 100vh solid transparent;
+    box-sizing: border-box;
+}
+.yellow {
+    color: #ECAE43;
+}
+.navbar {
+    display: flex;
+    list-style-type: none;
+    justify-content: start;
+}
+.navbutton {
+    display:inline-block;
+    padding: 1.8em 3em 1.8em 0em;
+    text-align: center;
+    font-size: 1.2em;
+}
+.navbutton a:hover, .navbutton a:active {
+    color: #ECAE43;
+}
+.navbutton a {
+    text-decoration: none;
+    color: #000;
+}
+.title-container h1 {
+    font-size: 70px;
+    font-family: "Gloock", serif;
+    margin: 2em 0em 1em 0em;
+}
+img {
+    width: 100%;
+    overflow: hidden;
+    
+}
+.inputarea {
+    display:flex;
+    width: 60% ;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+input, textarea {
+    width: 100%;
+    flex-grow: 1;
+}
+
+#sendbutton {
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.centeredtext, .centered {
+    text-align: center;
+}
+
+.recipes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.recipe {
+    border: solid 0.1em;
+    padding: 1em 2em;
+    border-radius: 2em;
+    width: 40%;
+}

@@ -1,4 +1,4 @@
-<?php require "partials/head.php"; ?>
+<?php require "partials/header.php"; ?>
 
 <h2 class="centered">Rekisteröidy</h2>
 
