@@ -28,9 +28,9 @@
         return answer;
     }
 </script>
-    <header class=main-header>
+    <header>
         
-        <div class="main-header-container">
+        <div class="header-container">
         <div class="title-container">
             <nav>
                 <ul class="navbar">
@@ -46,6 +46,9 @@
                 </ul>
             </nav>
             <h1>Reseptipankki</h1>
+            <p>Tämä on loistava paikka, jossa voit jakaa maukkaita reseptejäsi tai löytää hyviä reseptejä itsellesi.<br>
+                Anna elämäsi maistua herkulliselta!</p>
+            <button class="yellow-button"><a href="/">Hae resepti</a></button>
         </div>
         <div class="img-container"></div>
         </div>

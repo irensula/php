@@ -13,6 +13,18 @@ require_once 'controllers/recipeManagement.php';
 
 switch($route) {
     case "/":
+      require '.././views/home.view.php';
+    break;
+    
+    case '' :
+      require '.././views/home.view.php';
+    break;
+
+    case "/home":
+      require '.././views/home.view.php';
+    break;
+
+    case "/recipes":
         viewRecipesController();
     break;
 
