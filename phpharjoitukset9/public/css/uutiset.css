@@ -1,0 +1,69 @@
+header {
+    background: violet;
+    padding: 2em;
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+}
+
+.navbutton {
+    display:inline-block;
+    padding: 1em;
+    background-color: pink;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 25px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+    margin: 0.5em;
+    width: 10em;
+}
+
+.navbutton:hover, .navbutton:active {
+    background-color: red;
+}
+
+.navbutton a {
+    text-decoration: none;
+}
+
+.inputarea {
+    display:flex;
+    width: 60% ;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+
+input, textarea {
+    width: 100%;
+    flex-grow: 1;
+}
+
+#sendbutton {
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.centeredtext, .centered {
+    text-align: center;
+}
+
+.news {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.newsitem {
+    border: solid 0.1em;
+    padding: 1em 2em;
+    border-radius: 2em;
+    width: 40%;
+}
