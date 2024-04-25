@@ -34,30 +34,30 @@
         <h1>TIETOVISA</h1>
         <h2>How well do you know Friends?</h2>
         
-        <form action="index.php">
+        <form action="index.php" method="get">
             <ul>
                 <?php
                     $id = 1;
 
-                    $questions = getAllAnswers();
+                    $questions = getAllQuestions();
                     foreach($questions as $question) {
-                        echo "<li>" . $question["questionID"] . ". " . $question["questionText"] ?>
+                    echo "<li>" . $question["quizID"] . ". " . $question["question"] ?>
                     </li>
                     
-                        <input type="radio" id="answer_1" name="answer_1" value="answer_1" checked />
-                        <label for="answer_1"><?= $question["answerText"] ?></label>
+                        <input type='radio' id='answer_1' name='answer_1' value='answer_1' />
+                        <label for='answer_1'><?= $question["answerA"] ?></label>
                         
-                        <input type="radio" id="answer_2" name="answer_2" value="answer_2" />
-                        <label for="answer_2"><?= $question["answerText"] ?></label>
+                        <input type='radio' id='answer_2' name='answer_2' value='answer_2' />
+                        <label for='answer_2'><?= $question["answerB"] ?></label>
                         
-                        <input type="radio" id="answer_3" name="answer_3" value="answer_3" />
-                        <label for="answer_3"><?= $question["answerText"] ?></label>
+                        <input type='radio' id='answer_3' name='answer_3' value='answer_3' />
+                        <label for='answer_3'><?= $question["answerC"] ?></label>
                         
-                        <input type="radio" id="answer_4" name="answer_4" value="answer_4" />
-                        <label for="answer_4"><?= $question["answerText"] ?></label>
+                        <input type='radio' id='answer_4' name='answer_4' value='answer_4' />
+                        <label for='answer_4'><?= $question["answerD"] ?></label>
+                              
                     <?php } ?>
-            
-            <button class="button" type="submit">Lähetä</button>
+                    <button class="button" type="submit">Lähetä</button>
             </ul>
         </form>
     </div>

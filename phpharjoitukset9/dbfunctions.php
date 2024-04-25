@@ -22,32 +22,31 @@ function connect() {
         die();
     }
 }
-// show all classes
+
 function getAllQuestions() {
     $pdo = connect();
-    $sql = "SELECT * FROM questions";
+    $sql = "SELECT * FROM quiz";
     $stm = $pdo->query($sql);
     $questions = $stm->fetchAll(PDO::FETCH_ASSOC);
     return $questions;
 }
-function getAllAnswers() {
-    $pdo = connect();
-    // $sql = "SELECT * FROM questions";
-    $sql = "SELECT questions.questionID, questionText, answers.correct,
-        answers.answerText AS answerText
-        FROM questions
-        INNER JOIN answers ON answers.questionID = questions.questionID;";
-    $stm = $pdo->query($sql);
-    $answers = $stm->fetchAll(PDO::FETCH_ASSOC);
-    return $answers;
-}
 
-// get character by id
-function getCharacterById($characterID){
-    $pdo = connect();
-    $sql = "SELECT * FROM characters WHERE characterID=?";
-    $stm= $pdo->prepare($sql);
-    $stm->execute([$characterID]);
-    $all = $stm->fetch(PDO::FETCH_ASSOC);
-    return $all;
-}
+// function getAllAnswers() {
+//     $pdo = connect();
+//     // $sql = "SELECT * FROM questions";
+//     $sql = "SELECT questions.questionID, questionText, answers.correct,
+//         answers.answerText AS answerText
+//         FROM questions
+//         INNER JOIN answers ON answers.questionID = questions.questionID;";
+//     $stm = $pdo->query($sql);
+//     $answers = $stm->fetchAll(PDO::FETCH_ASSOC);
+//     return $answers;
+// }
+// function getCharacterById($characterID){
+//     $pdo = connect();
+//     $sql = "SELECT * FROM characters WHERE characterID=?";
+//     $stm= $pdo->prepare($sql);
+//     $stm->execute([$characterID]);
+//     $all = $stm->fetch(PDO::FETCH_ASSOC);
+//     return $all;
+// }
