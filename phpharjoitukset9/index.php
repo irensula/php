@@ -55,9 +55,10 @@
                         
                         <input type='radio' id='answer_4' name='answer_4' value='answer_4' />
                         <label for='answer_4'><?= $question["answerD"] ?></label>
-                              
+
+                        <button class="button" type="submit">Tarkista</button>          
                     <?php } ?>
-                    <button class="button" type="submit">Lähetä</button>
+                    
             </ul>
         </form>
     </div>

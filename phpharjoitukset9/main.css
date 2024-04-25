@@ -45,13 +45,12 @@ input {
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  display: block;
   font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 16px;
   font-weight: 600;
   justify-content: center;
   line-height: 1.25;
-  margin: 30px auto 30px auto;
+  margin: 15px 0px 15px 30px;
   min-height: 3rem;
   padding: calc(.875rem - 1px) calc(1.5rem - 1px);
   position: relative;
@@ -61,6 +60,7 @@ input {
   -webkit-user-select: none;
   touch-action: manipulation;
   width: auto;
+  vertical-align: baseline;
 }
 
 .button:hover,
