@@ -30,7 +30,14 @@ function getAllQuestions() {
     $questions = $stm->fetchAll(PDO::FETCH_ASSOC);
     return $questions;
 }
-
+function getQuestionById($questionID){
+    $pdo = connect();
+    $sql = "SELECT * FROM quiz WHERE quizID=?";
+    $stm= $pdo->prepare($sql);
+    $stm->execute([$questionID]);
+    $all = $stm->fetch(PDO::FETCH_ASSOC);
+    return $all;
+}
 // function getAllAnswers() {
 //     $pdo = connect();
 //     // $sql = "SELECT * FROM questions";
@@ -41,12 +48,4 @@ function getAllQuestions() {
 //     $stm = $pdo->query($sql);
 //     $answers = $stm->fetchAll(PDO::FETCH_ASSOC);
 //     return $answers;
-// }
-// function getCharacterById($characterID){
-//     $pdo = connect();
-//     $sql = "SELECT * FROM characters WHERE characterID=?";
-//     $stm= $pdo->prepare($sql);
-//     $stm->execute([$characterID]);
-//     $all = $stm->fetch(PDO::FETCH_ASSOC);
-//     return $all;
 // }

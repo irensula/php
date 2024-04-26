@@ -1,17 +1,4 @@
-<?php
-    require "./dbfunctions.php";
-    
-    if(isset($_GET['answer_1'], $_GET['answer_2'], $_GET['answer_3'], $_GET['answer_4'])) {
-        $answer_1 = htmlspecialchars($_GET['answer_1']);
-        $answer_2 = htmlspecialchars($_GET['answer_2']);  
-        $answer_3 = htmlspecialchars($_GET['answer_3']);
-        $answer_4 = htmlspecialchars($_GET['answer_4']);
-        echo $answer_1;
-        echo $answer_2;
-        echo $answer_3;
-        echo $answer_4;
-    }
-?>
+<?php require "./dbfunctions.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,27 +25,49 @@
             <ul>
                 <?php
                     $id = 1;
-
-                    $questions = getAllQuestions();
-                    foreach($questions as $question) {
-                    echo "<li>" . $question["quizID"] . ". " . $question["question"] ?>
+                    
+                    // $questions = getAllQuestions();
+                    // foreach($questions as $question) {
+                    // echo "<li>" . $question["quizID"] . ". " . $question["question"]
+                    while ($id <= 10) {
+                    
+                    $question = getQuestionById($id);
+                    echo "<li>" . $question["quizID"] . ". " . $question["question"];
+                    ?>
                     </li>
                     
-                        <input type='radio' id='answer_1' name='answer_1' value='answer_1' />
+                        <input type='radio' id='answer_1' name='choice' value='<?=$question["answerA"]?>' />
                         <label for='answer_1'><?= $question["answerA"] ?></label>
                         
-                        <input type='radio' id='answer_2' name='answer_2' value='answer_2' />
+                        <input type='radio' id='answer_2' name='choice' value='<?=$question["answerB"]?>' />
                         <label for='answer_2'><?= $question["answerB"] ?></label>
                         
-                        <input type='radio' id='answer_3' name='answer_3' value='answer_3' />
+                        <input type='radio' id='answer_3' name='choice' value='<?=$question["answerC"]?>' />
                         <label for='answer_3'><?= $question["answerC"] ?></label>
                         
-                        <input type='radio' id='answer_4' name='answer_4' value='answer_4' />
+                        <input type='radio' id='answer_4' name='choice' value='<?=$question["answerD"]?>' />
                         <label for='answer_4'><?= $question["answerD"] ?></label>
 
+                        <input type='hidden' id='correct' name='correct' value='<?=$question["correct"]?>' />
+                        <label for='correct'></label>
+                        
                         <button class="button" type="submit">Tarkista</button>          
-                    <?php } ?>
-                    
+                    <?php 
+                        $id++;
+                    } ?>
+                    </form>
+
+                    <?php
+                        if(isset($_GET['choice'], $_GET['correct'])) {
+                            $choice = htmlspecialchars($_GET['choice']);
+                            $correct = htmlspecialchars($_GET['correct']);  
+                            if($choice == $correct) {
+                                echo "<br>This is right answer.";
+                            } else {
+                                echo "<br>The right answer is <i>" . $correct . "</i>.";
+                            }   
+                        }
+                    ?>
             </ul>
-        </form>
+        
     </div>
