@@ -1,4 +1,8 @@
-<?php require "./dbfunctions.php"; ?>
+<?php 
+
+    require "./dbfunctions.php";
+    session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +36,7 @@
                     while ($id <= 10) {
                     
                     $question = getQuestionById($id);
+                    
                     echo "<li>" . $question["quizID"] . ". " . $question["question"];
                     ?>
                     </li>
@@ -51,18 +56,23 @@
                         <input type='hidden' id='correct' name='correct' value='<?=$question["correct"]?>' />
                         <label for='correct'></label>
                         
-                        <button class="button" type="submit">Tarkista</button>          
+                        <button class="button" type="submit">Tarkista</button>
+                                  
                     <?php 
                         $id++;
                     } ?>
                     </form>
 
                     <?php
+                        // $score = 0;
+                        $_SESSION["score"] = 0;
                         if(isset($_GET['choice'], $_GET['correct'])) {
                             $choice = htmlspecialchars($_GET['choice']);
                             $correct = htmlspecialchars($_GET['correct']);  
                             if($choice == $correct) {
-                                echo "<br>This is right answer.";
+                                echo "<br>This is right answer.<br><br>";
+                                $_SESSION["score"] += 1;
+                                echo "Your score is " . $_SESSION["score"] . ".";
                             } else {
                                 echo "<br>The right answer is <i>" . $correct . "</i>.";
                             }   
