@@ -1,6 +1,7 @@
 <?php 
 
-    require "./dbfunctions.php";
+    require_once "./dbfunctions.php";
+    require_once "./cleaners.php";
     session_start();
 ?>
 
@@ -29,7 +30,8 @@
             <ul>
                 <?php
                     $id = 1;
-                    
+                    $random = rand(1,15);
+                    echo $random;
                     // $questions = getAllQuestions();
                     // foreach($questions as $question) {
                     // echo "<li>" . $question["quizID"] . ". " . $question["question"]
@@ -66,13 +68,17 @@
                     <?php
                         // $score = 0;
                         $_SESSION["score"] = 0;
+
                         if(isset($_GET['choice'], $_GET['correct'])) {
                             $choice = htmlspecialchars($_GET['choice']);
                             $correct = htmlspecialchars($_GET['correct']);  
+                           
                             if($choice == $correct) {
                                 echo "<br>This is right answer.<br><br>";
+
                                 $_SESSION["score"] += 1;
                                 echo "Your score is " . $_SESSION["score"] . ".";
+                                
                             } else {
                                 echo "<br>The right answer is <i>" . $correct . "</i>.";
                             }   
