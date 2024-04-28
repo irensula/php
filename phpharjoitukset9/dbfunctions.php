@@ -26,6 +26,7 @@ function connect() {
 function getAllQuestions() {
     $pdo = connect();
     $sql = "SELECT * FROM quiz";
+    // $sql = "SELECT * FROM quiz WHERE quizID IN (2,4,12)";
     $stm = $pdo->query($sql);
     $questions = $stm->fetchAll(PDO::FETCH_ASSOC);
     return $questions;

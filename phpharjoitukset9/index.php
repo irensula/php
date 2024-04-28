@@ -29,14 +29,20 @@
         <form action="index.php" method="get">
             <ul>
                 <?php
-                    $id = 1;
-                    $random = rand(1,15);
-                    echo $random;
+                function UniqueRandomNumbersWithinRange($min, $max, $quantity) {
+                    $numbers = range($min, $max);
+                    shuffle($numbers);
+                    return array_slice($numbers, 0, $quantity);
+                }
+                $random_numbers = UniqueRandomNumbersWithinRange(1, 15, 10);
+                $numbers = implode(", ", $random_numbers);
+                echo $numbers;
+                    
+                $id = 1;
                     // $questions = getAllQuestions();
                     // foreach($questions as $question) {
-                    // echo "<li>" . $question["quizID"] . ". " . $question["question"]
-                    while ($id <= 10) {
                     
+                    while ($id <= 10) {
                     $question = getQuestionById($id);
                     
                     echo "<li>" . $question["quizID"] . ". " . $question["question"];
@@ -66,7 +72,7 @@
                     </form>
 
                     <?php
-                        // $score = 0;
+                        
                         $_SESSION["score"] = 0;
 
                         if(isset($_GET['choice'], $_GET['correct'])) {
