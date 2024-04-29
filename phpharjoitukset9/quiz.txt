@@ -120,3 +120,33 @@ VALUES
 (13, 'Which film was making Phoebe and Monica cry?', 'The Goonies', 'E.T.', 'Bambi', 'Titanic', 'E.T.'),
 (14, 'How did Chandler "kill" Ross?', 'Death by blimp', 'Stung by bees', 'Drowned', 'Car accident', 'Death by blimp'),
 (15, 'What did Ross steal from his father as a kid?', 'Playboy magazines', 'Cigars', 'Socks', 'Cash from his wallet', 'Playboy magazines');
+
+
+function selectedButton2() {
+        const optionContainer = document.querySelectorAll(".one");
+        for (var i = 0; i < optionContainer.length; i++) {
+            if (optionContainer[i].checked) {
+                optionContainer[i].parentElement.classList.add('selected');
+                document.getElementById("display").innerHTML = "You have selected: " + optionContainer[i].value;
+            } else {
+            optionContainer[i].parentElement.classList.remove('selected');
+            }
+        }
+    }   
+    </script>
+
+<div>
+    <input type="radio" name="gender" class="one" value="Male" />Male
+</div>
+<div>
+    <input type="radio" name="gender" class="one" value="Female" />Female
+</div>
+<div>
+    <input type="radio" name="gender" class="one" value="Other" />Other
+</div>
+<div id="display"> </div>
+<button onclick="selectedButton2()">Submit</button>
+
+.selected {
+  background-color: #96f97b;
+}

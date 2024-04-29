@@ -22,11 +22,23 @@ function connect() {
         die();
     }
 }
+function getTenQuestions() {
+    $pdo = connect();
+    
+    $numbers = range(1, 15);
+    shuffle($numbers);
+    $random_numbers = array_slice($numbers, 0, 10);
+    $newnumbers = implode(", ", $random_numbers);
+
+    $sql = "SELECT * FROM quiz WHERE quizID IN ($newnumbers);";
+    $stm = $pdo->query($sql);
+    $questions = $stm->fetchAll(PDO::FETCH_ASSOC);
+    return $questions;
+}
 
 function getAllQuestions() {
     $pdo = connect();
     $sql = "SELECT * FROM quiz";
-    // $sql = "SELECT * FROM quiz WHERE quizID IN (2,4,12)";
     $stm = $pdo->query($sql);
     $questions = $stm->fetchAll(PDO::FETCH_ASSOC);
     return $questions;
