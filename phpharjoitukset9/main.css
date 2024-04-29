@@ -42,6 +42,12 @@ li {
 .selected {
   background-color: #96f97b;
 }
+.rightAnswer {
+  background-color: #96f97b;
+}
+.wrongAnswer {
+  background-color: red;
+}
 /* input {
   position: fixed;
   opacity: 0;

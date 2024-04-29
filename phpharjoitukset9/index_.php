@@ -22,34 +22,38 @@
 
     <script>
         
-        //  function changeBackgroundColor() {
+         function changeBackgroundColor() {
+            const inputContainer = document.querySelectorAll(".answer-choice");
+             
+            for (var i = 0; i < inputContainer.length; i++) {
+                let correct = document.getElementById('correct').value;
+                let userChoice = inputContainer[i].checked;
+                console.log(correct);
+                if (correct === userChoice) {
+                    correct.parentElement.classList.add('rightAnswer');
+                    document.getElementById("result").innerHTML = "You have selected: " + inputContainer[i].value;
+                    event.preventDefault();
+                } else {
+                    userChoice.parentElement.classList.add('wrongAnswer');
+                    event.preventDefault();
+                }
+        }
+        }
+
+        // function selectedButton() {
         //     const inputContainer = document.querySelectorAll(".answer-choice");
-        //     let correct = document.querySelectorAll('.correct').value;
-        //     let answer = document.querySelectorAll('.answer-choice').value;
-        //     inputContainer.style.backgroundColor = "#96f97b"; 
         //     for (var i = 0; i < inputContainer.length; i++) {
-        //     if (correct === answer) {
-        //         inputContainer.style.backgroundColor = "#96f97b";
+        //     if (inputContainer[i].checked) {
+        //         inputContainer[i].parentElement.classList.add('selected');
+        //         document.getElementById("result").innerHTML = "You have selected: " + inputContainer[i].value;
         //     } else {
-        //         inputContainer.style.backgroundColor = "#fb8332";
-                
+        //         inputContainer[i].parentElement.classList.remove('selected');
+        //         event.preventDefault();
         //     }
         // }
-        // }
-
-        function selectedButton() {
-            const inputContainer = document.querySelectorAll(".answer-choice");
-            for (var i = 0; i < inputContainer.length; i++) {
-            if (inputContainer[i].checked) {
-                inputContainer[i].parentElement.classList.add('selected');
-                document.getElementById("result").innerHTML = "You have selected: " + inputContainer[i].value;
-            } else {
-                inputContainer[i].parentElement.classList.remove('selected');
-            }
-        }
-    }
+    //}
     
-
+    </script>
 </head>
 <body>
     <img class="center" src="friends.webp" alt="">
@@ -93,7 +97,7 @@
                         
                         <div id="result"></div>
                         
-                        <button id="submit" class="button" type="submit">Tarkista</button>
+                        <button id="submit" class="button" type="submit" onclick="changeBackgroundColor()">Tarkista</button>
                                   
                 <?php } ?>
             </ul>

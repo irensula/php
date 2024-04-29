@@ -26,70 +26,65 @@
         <h1>TIETOVISA</h1>
         <h2>How well do you know Friends?</h2>
         
-        <form action="index.php" method="get">
+        <form action="index_.php" method="get">
             <ul>
                 <?php
-                function UniqueRandomNumbersWithinRange($min, $max, $quantity) {
-                    $numbers = range($min, $max);
-                    shuffle($numbers);
-                    return array_slice($numbers, 0, $quantity);
-                }
-                $random_numbers = UniqueRandomNumbersWithinRange(1, 15, 10);
-                $numbers = implode(", ", $random_numbers);
-                echo $numbers;
-                    
-                $id = 1;
-                    // $questions = getAllQuestions();
-                    // foreach($questions as $question) {
-                    
-                    while ($id <= 10) {
-                    $question = getQuestionById($id);
-                    
-                    echo "<li>" . $question["quizID"] . ". " . $question["question"];
+                
+                    $questions = getTenQuestions();
+
+                    foreach($questions as $question) {
+                        
+                    echo "<li>" . $question["question"];
                     ?>
                     </li>
-                    
-                        <input type='radio' id='answer_1' name='choice' value='<?=$question["answerA"]?>' />
-                        <label for='answer_1'><?= $question["answerA"] ?></label>
+                        <div id="input-container">
+                            <input class="answer-choice" type='radio' id='answer_1' name='choice' value='<?=$question["answerA"]?>' />
+                            <label for='choice'><?= $question["answerA"] ?></label>
+                        </div>
                         
-                        <input type='radio' id='answer_2' name='choice' value='<?=$question["answerB"]?>' />
-                        <label for='answer_2'><?= $question["answerB"] ?></label>
+                        <div id="input-container">
+                            <input class="answer-choice" type='radio' id='answer_2' name='choice' value='<?=$question["answerB"]?>' />
+                            <label for='choice'><?= $question["answerB"] ?></label>
+                        </div>
                         
-                        <input type='radio' id='answer_3' name='choice' value='<?=$question["answerC"]?>' />
-                        <label for='answer_3'><?= $question["answerC"] ?></label>
+                        <div id="input-container">
+                            <input class="answer-choice" type='radio' id='answer_3' name='choice' value='<?=$question["answerC"]?>' />
+                            <label for='choice'><?= $question["answerC"] ?></label>
+                        </div>
                         
-                        <input type='radio' id='answer_4' name='choice' value='<?=$question["answerD"]?>' />
-                        <label for='answer_4'><?= $question["answerD"] ?></label>
+                        <div id="input-container">
+                            <input class="answer-choice" type='radio' id='answer_4' name='choice' value='<?=$question["answerD"]?>' />
+                            <label for='choice'><?= $question["answerD"] ?></label>
+                        </div>
 
-                        <input type='hidden' id='correct' name='correct' value='<?=$question["correct"]?>' />
+                        <input class="correct" type='hidden' id='correct' name='correct' value='<?=$question["correct"]?>' />
                         <label for='correct'></label>
                         
-                        <button class="button" type="submit">Tarkista</button>
-                                  
-                    <?php 
-                        $id++;
-                    } ?>
-                    </form>
-
-                    <?php
+                        <div id="result"></div>
                         
-                        $_SESSION["score"] = 0;
-
-                        if(isset($_GET['choice'], $_GET['correct'])) {
-                            $choice = htmlspecialchars($_GET['choice']);
-                            $correct = htmlspecialchars($_GET['correct']);  
-                           
-                            if($choice == $correct) {
-                                echo "<br>This is right answer.<br><br>";
-
-                                $_SESSION["score"] += 1;
-                                echo "Your score is " . $_SESSION["score"] . ".";
-                                
-                            } else {
-                                echo "<br>The right answer is <i>" . $correct . "</i>.";
-                            }   
-                        }
-                    ?>
+                        <button id="submit" class="button" type="submit">Tarkista</button>
+                                  
+                <?php } ?>
             </ul>
+        </form>
+        <?php
+                        
+                        // $_SESSION["score"] = 0;
+
+                        // if(isset($_GET['choice'], $_GET['correct'])) {
+                        //     $choice = htmlspecialchars($_GET['choice']);
+                        //     $correct = htmlspecialchars($_GET['correct']);  
+                           
+                        //     if($choice == $correct) {
+                        //         echo "<br>This is right answer.<br><br>";
+
+                        //         $_SESSION["score"] += 1;
+                        //         echo "Your score is " . $_SESSION["score"] . ".";
+                                
+                        //     } else {
+                        //         echo "<br>The right answer is <i>" . $correct . "</i>.";
+                        //     }   
+                        // }
+                    ?>
         
     </div>
