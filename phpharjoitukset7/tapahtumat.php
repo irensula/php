@@ -6,19 +6,19 @@
         <form class="tapahtumat-form" action="tapahtumat.php" method="get">
             
             <label for="name">Nimi:</label>
-            <input type="text" name="name" id="name" maxlength=30><br>
+            <input class="input-index" type="text" name="name" id="name" maxlength=30><br>
 
             <label for="email">Sähköpostiosoite:</label>
-            <input type="text" name="email" id="email" maxlength=30><br>
+            <input class="input-index" type="text" name="email" id="email" maxlength=30><br>
 
             <label for="phone">Puhelinnumero:</label>
-            <input type="text" name="phone" id="phone"><br>
+            <input class="input-index" type="text" name="phone" id="phone"><br>
 
             <label for="company">Yritys:</label>
-            <input type="text" name="company" id="company"><br>
+            <input class="input-index" type="text" name="company" id="company"><br>
 
             <label for="text">Esittelyteksti:</label>
-            <input type="text" name="text" id="text">
+            <input class="input-index" type="text" name="text" id="text">
 
             <fieldset>
                 <legend>Valitse roolisi:</legend>
@@ -60,12 +60,11 @@
                         <label for="info"></label>
                         <input type="submit" class="button-orange" value="Lähetä" name="info">
                     </form>';
-                if(isset($_GET['info'])){
-                    $info = htmlspecialchars($_GET['info']);
+                
                     
                     $file = fopen('participants.txt', 'a');
                     fwrite($file, $info);
                     fclose($file); 
-                }
+                
             } 
         ?>

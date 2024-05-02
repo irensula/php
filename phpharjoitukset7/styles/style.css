@@ -16,7 +16,7 @@
     background: linear-gradient(153deg, rgba(0,0,0,1) 0%, rgba(14,9,121,1) 35%, rgba(255,0,215,1) 100%);
     color: #d770f9;
 }
-.container {
+.container, .img-message {
     font-family: "Instrument Sans", sans-serif;
     width: 33%;
     padding: 50px;
@@ -66,7 +66,7 @@
 label {
     padding-right: 20px;
 }
-input {
+.input-index {
     width: 300px;
     height: 30px;
     margin-top: 10px;
@@ -87,8 +87,28 @@ textarea {
     border-radius: 5px;
     outline: none;
 }
-.galery-image img {
-    width: 300px;
+#galery-body .container, #galery-body .img-message {
+    margin: 0 0 20px 0;
+}
+input[type="file"] {
+    display: none;
+}
+.img-message {
+    display: block;
+    padding: 0px 50px;
+    margin: 0px auto 30px auto;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 4px;
+    align-content: flex-start;
+}
+.row img {
+    margin: 5px;
+    width: calc(25% - 10px);
+    vertical-align: middle;
 }
 /* button */
 
@@ -111,7 +131,20 @@ textarea {
   -webkit-user-select: none;
   touch-action: manipulation;
 }
-
+.img-label {
+    width: 150px;
+    display: inline-block;
+    font-size: 15px;
+    line-height: 18px;
+    padding: 17px 30px;
+}
+.img-button {
+    width: 150px;
+    display: inline-block;
+    font-size: 15px;
+    line-height: 18px;
+    height: 50px;
+}
 .button-orange:hover {
   background-position: right center;
   /* change the direction of the change here */

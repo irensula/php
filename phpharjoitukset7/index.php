@@ -6,7 +6,7 @@
         <form action="index.php" method="get">
             <div class="input-container">
                 <label for="name">Tiedoston nimi</label><br>
-                <input type="text" name="name" id="name">
+                <input class="input-index" type="text" name="name" id="name">
             </div>
             <div class="input-container">
                 <label for="text">Sisältö</label><br>

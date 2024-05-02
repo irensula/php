@@ -18,3 +18,10 @@ Puhelinnumero:
 Yritys: Lina Oy
 Esittelyteksti: Lorem ipsum
 Rooli: organizer
+Nimi: Iryna Sula
+Sähköpostiosoite: irensula19@gmail.com
+Puhelinnumero: 0408137886
+Yritys: 190286-264K
+Esittelyteksti: Tomato
+Rooli: performer
+
