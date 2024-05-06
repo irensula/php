@@ -1,3 +1,4 @@
+</main>
 <footer>
         <div class="some">
             <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>

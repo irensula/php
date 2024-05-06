@@ -1,7 +1,5 @@
 <?php require "partials/header.php"; ?>
 
-<h2 class="centered">Kaikki reseptit</h2>
-
 <div class = "recipes">
     <form action="/" method="POST">
         <label for="category"></label>
@@ -23,7 +21,7 @@
             <p><?=$recipe["category"]?></p>
             <p><?=$recipe["ingredients"]?></p>
             <p><?=$recipe["preparation"]?></p>
-            <p>By user: <?=$recipe["userID"]?></p>
+            <p>By user: <?=$recipe["userName"]?></p>
             <p><?=$recipe["additionDate"]?></p>
             <?php
             if(isLoggedIn() && ($recipe["userID"] == $_SESSION["userID"])):

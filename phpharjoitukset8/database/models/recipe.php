@@ -3,7 +3,9 @@ require_once "../database/connection.php";
 
 function getAllRecipes(){
     $pdo =connectDB();
-    $sql = "SELECT * FROM recipes";
+    $sql = "SELECT recipeID, name, additionDate, category, ingredients, preparation, recipes.userID, username AS userName
+    FROM recipes
+    INNER JOIN users ON users.userID = recipes.userID;";
     $stm = $pdo->query($sql);
     $all = $stm->fetchAll(PDO::FETCH_ASSOC);
     return $all;
