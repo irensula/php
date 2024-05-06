@@ -8,8 +8,8 @@
     <link rel="stylesheet" href=".././styles/reset.css">
     <link rel="stylesheet" href=".././styles/main.css">
     <!-- css -->
-    <!-- <link rel="stylesheet" href="../public/styles/reset.css?v="> -->
-    <!-- <link rel="stylesheet" href="../public/styles/main.css?v="> -->
+    <!-- <link rel="stylesheet" href="../public/styles/reset.css?v=">
+    <link rel="stylesheet" href="../public/styles/main.css?v="> -->
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
