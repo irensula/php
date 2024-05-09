@@ -32,6 +32,7 @@
         <div class="title-container">
             <nav>
                 <ul class="navbar">
+                <li class="navbutton"><a href="/">Etusivu</a></li>
                 <li class="navbutton"><a href="/recipes"><sapn class="yellow">Receptit</span></a></li>
                     <?php if(!isLoggedIn()): ?>  
                     <li class="navbutton"><a href="/register">Rekisteröidy</a></li>
