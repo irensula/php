@@ -8,14 +8,19 @@ function registerController(){
         $password = cleanUpInput($_POST['password']);
         $email = cleanUpInput($_POST['email']);
         $birthyear = cleanUpInput($_POST['birthyear']);
+        $currentYear = date('Y');
+        $validAge = $currentYear - $birthyear; 
         
-
-        try {
-            addUser($username, $password, $email, $birthyear);
-            header("Location: /login"); 
-        } catch (PDOException $e){
-            echo "Virhe tietokantaan tallennettaessa: " . $e->getMessage();
-        }
+            try {
+                if($validAge >= 15) {
+                    addUser($username, $password, $email, $birthyear);
+                    header("Location: /login"); 
+                } else {
+                    echo "käyttäjät ovat vähintään 15-vuotiaita";
+                }
+            } catch (PDOException $e){
+                echo "Virhe tietokantaan tallennettaessa: " . $e->getMessage();
+            }
     } else {
         require "views/register.view.php";
     }

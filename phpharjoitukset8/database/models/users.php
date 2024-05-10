@@ -1,5 +1,32 @@
 <?php
 require_once "../database/connection.php";
+// *** unique email
+function uniqueEmail($email) {
+    $pdo = connectDB();
+    $sql = "SELECT COUNT(email) AS EmailCount FROM users WHERE email = 'test@gmail.com';";
+    $stm= $pdo->prepare($sql);
+    $stm->execute([$email]);
+    $all = $stm->fetch(PDO::FETCH_ASSOC);
+    return $all;
+}
+
+// PDO instantiation here
+function uniqueEmailSO($email) {
+    $pdo = connectDB();
+    $stmt = $pdo->prepare('SELECT COUNT(email) AS EmailCount FROM users WHERE email = :email');
+    $stmt->execute(array('email' => $_POST['email']));
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($result['EmailCount'] == 0) {
+        $stmt = $pdo->prepare('INSERT INTO emails (email) VALUES (:email)');
+        $stmt->execute(array('email' => $_POST['email']));
+        echo 'Thank you for Submitting. Redirecting back to Home Page';
+    } else {
+        echo 'E-mail exists!';
+    }
+}
+
+// unique email ***
 
 function addUser($username, $password, $email, $birthyear){
     $pdo = connectDB();

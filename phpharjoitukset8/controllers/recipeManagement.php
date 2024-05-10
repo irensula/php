@@ -7,7 +7,7 @@ function viewRecipesController(){
     if (isset($_POST['category'])) {
         $category = cleanUpInput($_POST['category']);
         $allrecipes = getCategoryRecipes($category);
-        if($category == "Kaikki receptit") {
+        if($category == "Kaikki reseptit") {
             $allrecipes = getAllRecipes();
         }
     }
@@ -15,6 +15,35 @@ function viewRecipesController(){
         $allrecipes = getAllRecipes();
     }
     require "views/recipes.view.php";    
+}
+function viewRecipeController() {
+    try {
+        if(isset($_GET["id"])){
+            $id = cleanUpInput($_GET["id"]);
+            $recipes = getRecipeById($id);
+        } else {
+            echo "Virhe: id puuttuu ";    
+        }
+    } catch (PDOException $e){
+        echo "Virhe reseptista haettaessa: " . $e->getMessage();
+    }
+    
+    if($recipes){
+        $id = $recipes['recipeID'];
+        $name = $recipes['name'];
+        $additionDate = $recipes['additionDate'];
+        $time = implode("T", explode(" ",$additionDate));
+        $category = $recipes['category'];
+        $ingredients = $recipes['ingredients'];
+        $preparation = $recipes['preparation'];
+        $id = $recipes['recipeID'];
+    
+        require "views/recipe.view.php";
+     }
+    else {
+        header("Location: /recipes");
+        exit;
+    }
 }
 
 function addRecipeController(){
@@ -26,7 +55,7 @@ function addRecipeController(){
         $additionDate = cleanUpInput($_POST['additionDate']);   
         $userID = $_SESSION["userID"];
         addRecipe($name, $additionDate, $category, $ingredients, $preparation, $userID); 
-        header("Location: /");    
+        header("Location: /recipes");    
     } else {
         require "views/newRecipe.view.php";
     }
@@ -57,7 +86,7 @@ function editRecipeController(){
         require "views/updateRecipe.view.php";
      }
     else {
-        header("Location: /");
+        header("Location: /recipes");
         exit;
     }
 }
@@ -73,13 +102,13 @@ function updateRecipeController(){
 
         try{
             updateRecipe($name, $additionDate, $category, $ingredients, $preparation, $id);
-            header("Location: /");    
+            header("Location: /recipes");    
         } catch (PDOException $e){
                 echo "Virhe reseptista päivitettäessä: " . $e->getMessage();
         }
      } 
     else {
-        header("Location: /");
+        header("Location: /recipes");
         exit;
     }
 }
@@ -98,6 +127,6 @@ function deleteRecipeController(){
 
     $allrecipes = getAllRecipes();
 
-    header("Location: /");
+    header("Location: /recipes");
     exit;
 }

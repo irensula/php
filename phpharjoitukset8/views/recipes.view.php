@@ -1,17 +1,21 @@
 <?php require "partials/header.php"; ?>
 
 <div class = "recipes">
-    <form action="/" method="POST">
-        <label for="category"></label>
-        <select id="category" name="category">
-            <option value="aamiainen">Aamiainen</option>
-            <option value="pääruoka">Pääruoka</option>
-            <option value="välipala">Välipala</option>
-            <option value="jälkiruoka">Jälkiruoka</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
-
+    <div class="up-container">
+        <form class="selection-form" action="/recipes" method="POST">
+            <label for="category"></label>
+            <select id="category" name="category">
+                <option value="Kaikki reseptit">Kaikki reseptit</option>
+                <option value="aamiainen">Aamiainen</option>
+                <option value="pääruoka">Pääruoka</option>
+                <option value="välipala">Välipala</option>
+                <option value="jälkiruoka">Jälkiruoka</option>
+            </select>
+            <button class="yellow-button" type="submit">Submit</button>
+        </form>
+        <button class="yellow-button"><a href="/add_recipe">Uusi resepti</a></button>
+    </div>
+    
     <?php
 
     foreach($allrecipes as $recipe): ?>
@@ -32,6 +36,7 @@
 
                 <a href='/update_recipe?id=<?=$id?>'>Päivitä</a>
             <?php endif; ?>
+            <a href='/recipe?id=<?=$recipe["recipeID"]?>'>Lue lisää</a>
         </div>
     <?php endforeach ?>
 </div>

@@ -28,6 +28,10 @@ switch($route) {
         viewRecipesController();
     break;
 
+    case "/recipe":
+        viewRecipeController();  
+    break;
+
     case "/register":
         registerController();
     break;
@@ -86,6 +90,10 @@ switch($route) {
       } else {
         loginController();
       }
+    break;
+    
+    case "/contacts":
+      require '.././views/contacts.view.php';
     break;
 
     default:

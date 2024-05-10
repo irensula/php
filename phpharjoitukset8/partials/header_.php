@@ -33,12 +33,12 @@
             <nav>
                 <ul class="navbar">
                 <li class="navbutton"><a href="/">Etusivu</a></li>
-                <li class="navbutton"><a href="/recipes"><sapn class="yellow">Receptit</span></a></li>
+                <li class="navbutton"><a href="/contacts">Yhteystiedot</span></li>
                     <?php if(!isLoggedIn()): ?>  
                     <li class="navbutton"><a href="/register">Rekisteröidy</a></li>
                     <li class="navbutton"><a id="login-button" href="/login">Login</a></li>
                     <?php else: ?>
-                    <li class="navbutton"><a href="/add_recipe">Uusi recepti</a></li>
+                    <li class="navbutton"><a href="/recipes"><sapn class="yellow">Receptit</span></a></li>
                     <li class="navbutton"><a href="/user_page">Oma sivu</a></li>
                     <li class="navbutton"><a href="/logout">Logout</a></li>
                     <?php endif ?>
