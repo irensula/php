@@ -24,7 +24,10 @@
         <label for="additionDate">Lisäyspäivämäärä:</label>
         <input id="additionDate" type="datetime-local"  name="additionDate" value=""> 
         
-        <button class="yellow-button" id="sendbutton" type="submit" value="Lähetä">Lähetä</button>
+        <label for="fileToUpload" class="img-label">Valitse kuva</label>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+
+        <button class="yellow-button" id="sendbutton" type="submit" value="Lähetä" name="submit">Lähetä</button>
         
     </form>
 </div>
