@@ -3,7 +3,7 @@
 <h2 class="centered">Muokkaa resepti</h2>
 
 <div class="inputarea">
-<form  action="/update_recipe" method="post" >
+<form  action="/update_recipe" method="post" enctype="multipart/form-data" >
     <label for="name">Nimi:</label>
     <input id="name" type="name" name="name" maxlength=50 value="<?=$name?>">
     
@@ -24,6 +24,9 @@
     <label for="additionDate">Lisäyspäivämäärä:</label>
     <input id="additionDate" type="datetime-local"  name="additionDate" value="<?=$additionDate?>">    
     
+    <label for="image" class="img-label">Valitse kuva</label>
+    <input type="file" name="image" id="image">
+
     <button class="yellow-button" id="sendbutton" type="submit" value="Lähetä">Lähetä</button>
 </form>
 </div>

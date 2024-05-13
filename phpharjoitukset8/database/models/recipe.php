@@ -3,7 +3,7 @@ require_once "../database/connection.php";
 
 function getAllRecipes(){
     $pdo =connectDB();
-    $sql = "SELECT recipeID, name, additionDate, category, ingredients, preparation, recipes.userID, username AS userName
+    $sql = "SELECT recipeID, name, additionDate, category, ingredients, preparation, image, recipes.userID, username AS userName
     FROM recipes
     INNER JOIN users ON users.userID = recipes.userID;";
     $stm = $pdo->query($sql);
@@ -11,10 +11,10 @@ function getAllRecipes(){
     return $all;
 }
 
-function addRecipe($name, $additionDate, $category, $ingredients, $preparation, $userID){
+function addRecipe($name, $additionDate, $category, $ingredients, $preparation, $image, $userID){
     $pdo =connectDB();
-    $data = [$name, $additionDate, $category, $ingredients, $preparation, $userID];
-    $sql = "INSERT INTO recipes (name, additionDate, category, ingredients, preparation, userID) VALUES(?,?,?,?,?,?)";
+    $data = [$name, $additionDate, $category, $ingredients, $preparation, $image, $userID];
+    $sql = "INSERT INTO recipes (name, additionDate, category, ingredients, preparation, image, userID) VALUES(?,?,?,?,?,?,?)";
     $stm=$pdo->prepare($sql);
     return $stm->execute($data);
 }
@@ -35,10 +35,10 @@ function deleteRecipe($id){
     return $stm->execute([$id]);
 }
 
-function updateRecipe($name, $additionDate, $category, $ingredients, $preparation, $recipeID){
+function updateRecipe($name, $additionDate, $category, $ingredients, $preparation, $image, $recipeID){
     $pdo = connectDB();
-    $data = [$name, $additionDate, $category, $ingredients, $preparation, $recipeID];
-    $sql = "UPDATE recipes SET name = ?, additionDate = ?, category = ?, ingredients = ?, preparation = ? WHERE recipeID = ?";
+    $data = [$name, $additionDate, $category, $ingredients, $preparation, $image, $recipeID];
+    $sql = "UPDATE recipes SET name = ?, additionDate = ?, category = ?, ingredients = ?, preparation = ?, image = ? WHERE recipeID = ?";
     $stm = $pdo->prepare($sql);
     return $stm->execute($data);
 }

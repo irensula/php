@@ -3,7 +3,7 @@
 <h2 class="form-title centered">Syötä resepti</h2>
 
 <div class="inputarea">
-    <form  action="/add_recipe" method="post">
+    <form  action="/add_recipe" method="post" enctype="multipart/form-data">
         <label for="name">Nimi:</label>
         <input id="name" type="name" name="name" maxlength="50">
         
