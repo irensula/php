@@ -24,8 +24,10 @@
     <label for="additionDate">Lisäyspäivämäärä:</label>
     <input id="additionDate" type="datetime-local"  name="additionDate" value="<?=$additionDate?>">    
     
-    <label for="image" class="img-label">Valitse kuva</label>
-    <input type="file" name="image" id="image">
+    <label for="fileToUpload" class="img-label">Valitse kuva</label>
+    <input type="file" name="fileToUpload" id="fileToUpload">
+
+    <input type="hidden" name="id" value="<?=$id?>">
 
     <button class="yellow-button" id="sendbutton" type="submit" value="Lähetä">Lähetä</button>
 </form>

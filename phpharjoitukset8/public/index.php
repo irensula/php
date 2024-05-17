@@ -96,6 +96,10 @@ switch($route) {
       require '.././views/contacts.view.php';
     break;
 
+    case "/print_recipe":
+      printRecipeController();
+    break;
+
     default:
       echo "Error 404";
   }
