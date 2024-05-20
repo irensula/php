@@ -48,6 +48,9 @@ li {
 .wrongAnswer {
   background-color: red;
 }
+.hidden {
+  display: none;
+}
 /* input {
   position: fixed;
   opacity: 0;
