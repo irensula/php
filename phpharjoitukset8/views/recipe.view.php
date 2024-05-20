@@ -15,9 +15,13 @@
         <h2 class="middle-title">Valmistusohje: </h2><p><?=$preparation?></p>
         <p><span class="bold">Lisäyspäivämäärä: </span><?=$additionDate?></p>   
         
-        <button class="yellow-button"><a href='/update_recipe?id=<?=$id?>'>Päivitä</a></button>
+        <a href='/update_recipe?id=<?=$id?>'><i class="fa-solid fa-pen-to-square"></i></a>
         
-        <button><a href='/print_recipe?id=<?=$id?>'>Tulosta</a></button>
+        <a href='/print_recipe?id=<?=$id?>'><i class="fa-solid fa-print"></i></a>
+
+        <a href='/delete_recipe?id=<?=$id?>' onClick='confirmDelete(<?=$id?>)'>
+            <i class="fa-solid fa-trash"></i>
+        </a>
 </div>    
 
 

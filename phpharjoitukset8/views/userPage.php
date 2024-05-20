@@ -1,7 +1,5 @@
 <?php require "partials/header.php"; ?>
 
-
-
 <?php
 
     if(isLoggedIn() && ($_SESSION["userID"])):

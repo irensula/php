@@ -25,6 +25,8 @@ header {
 }
 .main-header {
     height: 50vh;
+    z-index: 1;
+    overflow: hidden;
 }
 .header-container {
     width: 100%;
@@ -83,6 +85,7 @@ main {
     border-top: var(--yellow) 2px solid;
     padding-top: 50px;   
     background-color: var(--white);
+    z-index: 10;
 }
 img {
     width: 100%;
@@ -117,7 +120,8 @@ img {
 }
 .form-title {
     text-transform: uppercase;
-    font-size: 30px;
+    font-size: 2em;
+    margin-bottom: 2em;
 }
 #sendbutton {
     width: 20%;
@@ -290,6 +294,14 @@ a.yellow-button {
     width: calc(50% - 2em);
     margin: 0 2em 2em 0;
 }
+.recipe-details {
+    width: calc(50% - 2em);
+}
+i {
+    color: var(--yellow);
+    font-size: 2em;
+    margin: 1.5em 2em 2em 0;
+}
 /* footer */
 footer {
     background-color: var(--yellow);
@@ -301,7 +313,7 @@ footer {
     gap: 50px;
     margin-bottom: 30px;
 }
-.some a {
+.some a i {
     font-size: 30px;
     color: var(--black);
 }

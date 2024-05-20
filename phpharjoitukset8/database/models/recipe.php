@@ -13,7 +13,7 @@ function getAllRecipes(){
 
 function addRecipe($name, $additionDate, $category, $ingredients, $preparation, $image, $userID){
     $pdo =connectDB();
-    $data = [$name, $additionDate, $category, $ingredients, $preparation, $image, $userID];
+    $data = [$name, $additionDate, $category, nl2br($ingredients), nl2br($preparation), $image, $userID];
     $sql = "INSERT INTO recipes (name, additionDate, category, ingredients, preparation, image, userID) VALUES(?,?,?,?,?,?,?)";
     $stm=$pdo->prepare($sql);
     return $stm->execute($data);
@@ -37,7 +37,7 @@ function deleteRecipe($id){
 
 function updateRecipe($name, $additionDate, $category, $ingredients, $preparation, $image, $recipeID){
     $pdo = connectDB();
-    $data = [$name, $additionDate, $category, $ingredients, $preparation, $image, $recipeID];
+    $data = [$name, $additionDate, $category, nl2br($ingredients), nl2br($preparation), $image, $recipeID];
     $sql = "UPDATE recipes SET name = ?, additionDate = ?, category = ?, ingredients = ?, preparation = ?, image = ? WHERE recipeID = ?";
     $stm = $pdo->prepare($sql);
     return $stm->execute($data);
