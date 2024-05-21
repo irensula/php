@@ -26,16 +26,33 @@
             let correctAnswer = document.getElementById("correct");
             let allChoices = document.querySelectorAll('.answer-choice');
             let correct = correctAnswer.value;
+            let selectedValue = document.querySelector('input[name="choice"]:checked');
+            console.log(selectedValue);
             event.preventDefault();
+            
             for (let i = 0; i < allChoices.length; i++) {
                 let correct = correctAnswer.value;
                 let userChoice = allChoices[i].checked;
 
                 if(userChoice) {
                     console.log(correct);
+                    console.log(userChoice);
                 }
             }
-            
+            function checkButton() {  
+            var getSelectedValue = document.querySelector( 
+                'input[name="choice"]:checked'); 
+              
+            if(getSelectedValue != null) { 
+                document.getElementById("disp").innerHTML 
+                    = getSelectedValue.value 
+                    + " season is selected"; 
+            } 
+            else { 
+                document.getElementById("error").innerHTML 
+                    = "*You have not selected any season"; 
+            } 
+        }  
             // for (let i = 0; i < allChoices.length; i++) {
             //     
             //     let userChoice = allChoices[i].checked;
@@ -117,29 +134,38 @@
                         <div id="result">Answer:</div>
                         <div id="score">Score:</div>
                         
-                        <button id="submit" class="button" type="submit" onclick="changeBackgroundColor()">Tarkista</button>
+                        <button onclick="checkButton()" id="submit" class="button" type="submit">Tarkista</button>
                                   
                 <?php //} ?>
             </ul>
         </form>
 
-                    <?php
-                        
-                        // $_SESSION["score"] = 0;
+        <br><b> Choose your favroite season: </b><br>
+<input type="radio" name="season" id="summer" value="Summer"> 1 <br> 
+<input type="radio" name="season" id="winter" value="Winter"> 2 <br> 
+<input type="radio" name="season" id="rainy" value="Rainy"> 3 <br>
+<input type="radio" name="season" id="autumn" value="Autumn"> 4<br><br>     
 
-                        // if(isset($_GET['choice'], $_GET['correct'])) {
-                        //     $choice = htmlspecialchars($_GET['choice']);
-                        //     $correct = htmlspecialchars($_GET['correct']);  
-                           
-                        //     if($choice == $correct) {
-                        //         echo "<br>This is right answer.<br><br>";
+<button type="button" onclick=" checkButton()"> Submit </button> 
+    
+<h3 id="disp" style= "color:green"> </h3>
+<h4 id="error" style= "color:red"> </h4>
+</body>
 
-                        //         $_SESSION["score"] += 1;
-                        //         echo "Your score is " . $_SESSION["score"] . ".";
-                                
-                        //     } else {
-                        //         echo "<br>The right answer is <i>" . $correct . "</i>.";
-                        //     }   
-                        // }
-                    ?>
+<script>
+    function checkButton() {  
+            var getSelectedValue = document.querySelector( 
+                'input[name="season"]:checked'); 
+              
+            if(getSelectedValue != null) { 
+                document.getElementById("disp").innerHTML 
+                    = getSelectedValue.value 
+                    + " season is selected"; 
+            } 
+            else { 
+                document.getElementById("error").innerHTML 
+                    = "*You have not selected any season"; 
+            } 
+        }  
+    </script> 
     </div>
