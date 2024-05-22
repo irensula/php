@@ -36,13 +36,6 @@ function getTenQuestions() {
     return $questions;
 }
 
-function getAllQuestions() {
-    $pdo = connect();
-    $sql = "SELECT * FROM quiz";
-    $stm = $pdo->query($sql);
-    $questions = $stm->fetchAll(PDO::FETCH_ASSOC);
-    return $questions;
-}
 function getQuestionById($questionID){
     $pdo = connect();
     $sql = "SELECT * FROM quiz WHERE quizID=?";
@@ -51,14 +44,21 @@ function getQuestionById($questionID){
     $all = $stm->fetch(PDO::FETCH_ASSOC);
     return $all;
 }
-// function getAllAnswers() {
-//     $pdo = connect();
-//     // $sql = "SELECT * FROM questions";
-//     $sql = "SELECT questions.questionID, questionText, answers.correct,
-//         answers.answerText AS answerText
-//         FROM questions
-//         INNER JOIN answers ON answers.questionID = questions.questionID;";
-//     $stm = $pdo->query($sql);
-//     $answers = $stm->fetchAll(PDO::FETCH_ASSOC);
-//     return $answers;
-// }
+
+function getAllQuestions() {
+    $pdo = connect();
+    $sql = "SELECT * FROM questions";
+    $stm = $pdo->query($sql);
+    $questions = $stm->fetchAll(PDO::FETCH_ASSOC);
+    return $questions;
+}
+function getAllAnswers() {
+    $pdo = connect();
+    $sql = "SELECT questions.questionID, questionText, answers.correct, answers.answerID,
+    answers.answerText AS answerText
+    FROM questions
+    INNER JOIN answers ON answers.questionID = questions.questionID;";
+    $stm = $pdo->query($sql);
+    $answers = $stm->fetchAll(PDO::FETCH_ASSOC);
+    return $answers;
+}

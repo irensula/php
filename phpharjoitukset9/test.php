@@ -1,7 +1,5 @@
 <?php 
-
     require_once "./dbfunctions.php";
-    require_once "./cleaners.php";
     session_start();
 ?>
 
@@ -16,43 +14,106 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <!-- css -->
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="main.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="styles/reset.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="styles/main.css?v=<?php echo time(); ?>">
     <title>Document</title>
 
-    <script>
-        
-         function changeBackgroundColor() {
-            let correctAnswer = document.getElementById("correct");
-            let allChoices = document.querySelectorAll('.answer-choice');
-            let correct = correctAnswer.value;
-            let selectedValue = document.querySelector('input[name="choice"]:checked');
-            console.log(selectedValue);
-            event.preventDefault();
-            
-            for (let i = 0; i < allChoices.length; i++) {
-                let correct = correctAnswer.value;
-                let userChoice = allChoices[i].checked;
+<body>
 
-                if(userChoice) {
-                    console.log(correct);
-                    console.log(userChoice);
-                }
-            }
-            function checkButton() {  
-            var getSelectedValue = document.querySelector( 
-                'input[name="choice"]:checked'); 
-              
+    <img src="friends.webp" alt="">
+    
+    <h1>TIETOVISA</h1>
+    
+    <h2>How well do you know Friends?</h2>
+
+        <form action="test.php" method="get">
+            <ul>
+                    <?php
+                    
+                        $questions = getTenQuestions();
+
+                        foreach($questions as $question) {
+                            
+                        echo "<li>" . $question["question"];
+                        ?>
+                        </li>
+
+            <div class="input-container">
+                <input class="answer-choice" type='radio' id='answer_1' name='choice' value='<?=$question["answerA"]?>' />
+                <label for='choice'><?= $question["answerA"] ?></label>
+            </div>
+            
+            <div class="input-container">
+                <input class="answer-choice" type='radio' id='answer_2' name='choice' value='<?=$question["answerB"]?>' />
+                <label for='choice'><?= $question["answerB"] ?></label>
+            </div>
+            
+            <div class="input-container">
+                <input class="answer-choice" type='radio' id='answer_3' name='choice' value='<?=$question["answerC"]?>' />
+                <label for='choice'><?= $question["answerC"] ?></label>
+            </div>
+            
+            <div class="input-container">
+                <input class="answer-choice" type='radio' id='answer_4' name='choice' value='<?=$question["answerD"]?>' />
+                <label for='choice'><?= $question["answerD"] ?></label>
+            </div>
+            <div class="input-container hidden">
+                <input class="correct" type='hidden' id='correct' name='correct' value='<?=$question["correct"]?>' />
+                <label for='correct'></label>
+            </div>
+            <button class="button" type="button" onclick="checkButton()"> Submit </button>
+            
+            <div class="test-resutls">
+                <p id="result"></p>
+                <p id="rightAnswer"></p>
+                <p id="error"></p>
+                <p id="score"></p>
+            </div>
+            <?php } ?>
+                </ul>
+        </form>  
+
+</body>
+
+<script>
+    function checkButton() {  
+            let correctValue =  document.getElementById("correct");
+            
+            
+            for (let i = 0; i < correctValue.length; i++) {
+                let getSelectedValue = document.querySelector('input[name="choice"]:checked'); 
+            let score = document.getElementById("score");
+            let scoreNumber = 0;
             if(getSelectedValue != null) { 
-                document.getElementById("disp").innerHTML 
-                    = getSelectedValue.value 
-                    + " season is selected"; 
+
+                document.getElementById("result").innerHTML 
+                    = "Your answer is " + getSelectedValue.value; 
+                document.getElementById("rightAnswer").innerHTML 
+                    = "Correct answer is " + correctValue[i].value; 
+                    console.log(correctValue[i].value);
+                    console.log(getSelectedValue.value);
+                    
+                    if (correctValue[i].value === getSelectedValue.value) {
+                        getSelectedValue.parentElement.classList.add('rightAnswer');
+                        scoreNumber++;
+                        score.innerHTML = 'Your score is ' + scoreNumber; 
+                    } else {
+                        
+                    getSelectedValue.parentElement.classList.add('wrongAnswer');
+                    score.innerHTML = 'Your score is ' + scoreNumber;
+                    }
             } 
             else { 
                 document.getElementById("error").innerHTML 
-                    = "*You have not selected any season"; 
+                    = "*You have not selected any answer"; 
             } 
-        }  
+        }
+    }  
+    </script> 
+    </body>
+</html>
+
+<script>
             // for (let i = 0; i < allChoices.length; i++) {
             //     
             //     let userChoice = allChoices[i].checked;
@@ -66,7 +127,7 @@
                 // } else {
                 //     userChoice.parentElement.classList.add('wrongAnswer');
                     
-                }
+                //}
         // }
         // }
 
@@ -89,83 +150,3 @@
     // }
     
     </script>
-</head>
-<body>
-    <img class="center" src="friends.webp" alt="">
-    <div class="container">
-        <h1>TIETOVISA</h1>
-        <h2>How well do you know Friends?</h2>
-        
-        <form action="test.php" method="get">
-            <ul>
-                <?php
-                
-                    $question = getQuestionById(1);
-
-                    // foreach($questions as $question) {
-                        
-                    // echo "<li>" . $question["question"];
-                    ?>
-                    </li>
-                        <div id="input-container_1">
-                            <input class="answer-choice" type='radio' id='answer_1' name='choice' value='<?=$question["answerA"]?>' />
-                            <label for='choice'><?= $question["answerA"] ?></label>
-                        </div>
-                        
-                        <div id="input-container_2">
-                            <input class="answer-choice" type='radio' id='answer_2' name='choice' value='<?=$question["answerB"]?>' />
-                            <label for='choice'><?= $question["answerB"] ?></label>
-                        </div>
-                        
-                        <div id="input-container_3">
-                            <input class="answer-choice" type='radio' id='answer_3' name='choice' value='<?=$question["answerC"]?>' />
-                            <label for='choice'><?= $question["answerC"] ?></label>
-                        </div>
-                        
-                        <div id="input-container_4">
-                            <input class="answer-choice" type='radio' id='answer_4' name='choice' value='<?=$question["answerD"]?>' />
-                            <label for='choice'><?= $question["answerD"] ?></label>
-                        </div>
-                        <div id="input-container_5" class="hidden">
-                            <input class="correct" type='hidden' id='correct' name='correct' value='<?=$question["correct"]?>' />
-                            <label for='correct'></label>
-                        </div>
-
-                        <div id="result">Answer:</div>
-                        <div id="score">Score:</div>
-                        
-                        <button onclick="checkButton()" id="submit" class="button" type="submit">Tarkista</button>
-                                  
-                <?php //} ?>
-            </ul>
-        </form>
-
-        <br><b> Choose your favroite season: </b><br>
-<input type="radio" name="season" id="summer" value="Summer"> 1 <br> 
-<input type="radio" name="season" id="winter" value="Winter"> 2 <br> 
-<input type="radio" name="season" id="rainy" value="Rainy"> 3 <br>
-<input type="radio" name="season" id="autumn" value="Autumn"> 4<br><br>     
-
-<button type="button" onclick=" checkButton()"> Submit </button> 
-    
-<h3 id="disp" style= "color:green"> </h3>
-<h4 id="error" style= "color:red"> </h4>
-</body>
-
-<script>
-    function checkButton() {  
-            var getSelectedValue = document.querySelector( 
-                'input[name="season"]:checked'); 
-              
-            if(getSelectedValue != null) { 
-                document.getElementById("disp").innerHTML 
-                    = getSelectedValue.value 
-                    + " season is selected"; 
-            } 
-            else { 
-                document.getElementById("error").innerHTML 
-                    = "*You have not selected any season"; 
-            } 
-        }  
-    </script> 
-    </div>
