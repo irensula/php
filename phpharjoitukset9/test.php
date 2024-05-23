@@ -28,51 +28,42 @@
 
         <form action="test.php" method="get">
             <ul>
-                    <?php
-                    
-                        $questions = getTenQuestions();
-
-                        foreach($questions as $question) {
+                <?php
+                    $questions = getTenQuestions();
+                        
+                    foreach($questions as $question) {
                             
-                        echo "<li>" . $question["question"];
-                        ?>
-                        </li>
+                        echo "<li>" . $question["questionText"]; ?></li>
 
-            <div class="input-container">
-                <input class="answer-choice" type='radio' id='answer_1' name='choice' value='<?=$question["answerA"]?>' />
-                <label for='choice'><?= $question["answerA"] ?></label>
-            </div>
-            
-            <div class="input-container">
-                <input class="answer-choice" type='radio' id='answer_2' name='choice' value='<?=$question["answerB"]?>' />
-                <label for='choice'><?= $question["answerB"] ?></label>
-            </div>
-            
-            <div class="input-container">
-                <input class="answer-choice" type='radio' id='answer_3' name='choice' value='<?=$question["answerC"]?>' />
-                <label for='choice'><?= $question["answerC"] ?></label>
-            </div>
-            
-            <div class="input-container">
-                <input class="answer-choice" type='radio' id='answer_4' name='choice' value='<?=$question["answerD"]?>' />
-                <label for='choice'><?= $question["answerD"] ?></label>
-            </div>
-            <div class="input-container hidden">
-                <input class="correct" type='hidden' id='correct' name='correct' value='<?=$question["correct"]?>' />
-                <label for='correct'></label>
-            </div>
-            <button class="button" type="button" onclick="checkButton()"> Submit </button>
-            
-            <div class="test-resutls">
-                <p id="result"></p>
-                <p id="rightAnswer"></p>
-                <p id="error"></p>
-                <p id="score"></p>
-            </div>
-            <?php } ?>
+                        <?php 
+                        
+                        $answers = getAllAnswers();
+                         
+                        foreach($answers as $answer) { 
+                        
+                            if ($question["questionID"] == $answer["questionID"]) { ?>
+                                
+                                <div class="input-container">
+                                    <input class="answer-choice" type='radio' id='answerID' name='choice' value='<?=$answer["answerText"]?>' />
+                                    <label for='choice'><?= $answer["answerText"] ?></label>
+                                    
+                                    <input class="correct" type='hidden' id='correct' name='correct' value='<?=$answer["correct"]?>' />
+                                    <label for='correct'></label> 
+                                </div>                       
+                            <?php } ?>
+                        <?php } ?>
+
+                        <button class="button" type="button" onclick="checkButton()"> Submit </button>
+
+                        <div class="test-resutls">
+                            <p id="result"></p>
+                            <p id="rightAnswer"></p>
+                            <p id="error"></p>
+                            <p id="score"></p>
+                        </div>
+                    <?php } ?>
                 </ul>
         </form>  
-
 </body>
 
 <script>

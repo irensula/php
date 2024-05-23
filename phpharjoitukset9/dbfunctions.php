@@ -22,19 +22,6 @@ function connect() {
         die();
     }
 }
-function getTenQuestions() {
-    $pdo = connect();
-    
-    $numbers = range(1, 15);
-    shuffle($numbers);
-    $random_numbers = array_slice($numbers, 0, 10);
-    $newnumbers = implode(", ", $random_numbers);
-
-    $sql = "SELECT * FROM quiz WHERE quizID IN ($newnumbers);";
-    $stm = $pdo->query($sql);
-    $questions = $stm->fetchAll(PDO::FETCH_ASSOC);
-    return $questions;
-}
 
 function getQuestionById($questionID){
     $pdo = connect();
@@ -44,7 +31,32 @@ function getQuestionById($questionID){
     $all = $stm->fetch(PDO::FETCH_ASSOC);
     return $all;
 }
+// function getTenQuestions() {
+//     $pdo = connect();
+    
+//     $numbers = range(1, 15);
+//     shuffle($numbers);
+//     $random_numbers = array_slice($numbers, 0, 10);
+//     $newnumbers = implode(", ", $random_numbers);
 
+//     $sql = "SELECT * FROM quiz WHERE quizID IN ($newnumbers);";
+//     $stm = $pdo->query($sql);
+//     $questions = $stm->fetchAll(PDO::FETCH_ASSOC);
+//     return $questions;
+// }
+function getTenQuestions() {
+    $pdo = connect();
+    
+    $numbers = range(1, 15);
+    shuffle($numbers);
+    $random_numbers = array_slice($numbers, 0, 10);
+    $newnumbers = implode(", ", $random_numbers);
+
+    $sql = "SELECT * FROM questions WHERE questionID IN ($newnumbers);";
+    $stm = $pdo->query($sql);
+    $questions = $stm->fetchAll(PDO::FETCH_ASSOC);
+    return $questions;
+}
 function getAllQuestions() {
     $pdo = connect();
     $sql = "SELECT * FROM questions";
