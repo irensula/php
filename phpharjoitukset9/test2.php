@@ -29,7 +29,7 @@
         <form action="index.php" method="get">
             <ul>
                 <?php
-                    $questions = getTenQuestions();
+                    $questions = getQuestionById2(1);
                         
                     foreach($questions as $question) {
                             
@@ -47,7 +47,7 @@
                                     <input class="answer-choice" type='radio' id='<?=$answer["answerID"]?>' name='choice' value='<?=$answer["answerText"]?>' />
                                     <label for='<?=$answer["answerID"]?>'><?= $answer["answerText"] ?></label>
                                     
-                                    <input class="correct" type='hidden' id='<?=$answer["answerID"] .'-'. $answer["correct"]?>' name='correct' value='<?=$answer["correct"]?>' />
+                                    <input class="correct" type='text' id='<?=$answer["answerID"] .'-'. $answer["correct"]?>' name='correct' value='<?=$answer["correct"]?>' />
                                     <label for='<?=$answer["answerID"] .'-'. $answer["correct"]?>'></label> 
                                 </div>                       
                             <?php } ?>
@@ -68,8 +68,6 @@
                         if(isset($_GET['submit'])) {
                             $choice = htmlspecialchars($_GET['choice']);
                             $correct = htmlspecialchars($_GET['correct']);
-                            
-                            
                             echo "Your answer is " . $choice . "</br>";
                             echo "Correct answer is" . $correct;
                             
