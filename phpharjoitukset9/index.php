@@ -26,14 +26,15 @@
     
     <h2>How well do you know Friends?</h2>
 
-        <form action="index.php" method="get">
-            <ul>
                 <?php
-                    $questions = getTenQuestions();
+                    $questions = getAllQuestions();
                         
                     foreach($questions as $question) {
                             
-                        echo "<li>" . $question["questionText"]; ?></li>
+                        echo "<form action='index.php' method='get'>
+                            <ul><hr>
+                                <li>" . $question["questionText"];
+                                ?></li>
 
                         <?php 
                         
@@ -44,50 +45,40 @@
                             if ($question["questionID"] == $answer["questionID"]) { ?>
                                 
                                 <div class="input-container">
-                                    <input class="answer-choice" type='radio' id='<?=$answer["answerID"]?>' name='choice' value='<?=$answer["answerText"]?>' />
-                                    <label for='<?=$answer["answerID"]?>'><?= $answer["answerText"] ?></label>
                                     
-                                    <input class="correct" type='hidden' id='<?=$answer["answerID"] .'-'. $answer["correct"]?>' name='correct' value='<?=$answer["correct"]?>' />
-                                    <label for='<?=$answer["answerID"] .'-'. $answer["correct"]?>'></label> 
+                                    <input class="answer-choice" type='radio' id='choice' name='choice' value='<?=$answer["answerText"]?>' />
+                                    <label for='choice'><?= $answer["answerText"] ?></label>
+                                    
                                 </div>                       
                             <?php } ?>
                         <?php } ?>
 
                         <button class="button" type="submit" name="submit" onclick="checkButton()"> Submit </button>
-
-                        <div class="test-resutls">
-                            <p id="result"></p>
-                            <p id="rightAnswer"></p>
-                            <p id="error"></p>
-                            <p id="score"></p>
-                        </div>
+                        </ul>
+                        
+                    </form>
                         <?php
                         
-                        // $_SESSION["score"] = 0;
-
-                        if(isset($_GET['submit'])) {
-                            $choice = htmlspecialchars($_GET['choice']);
-                            $correct = htmlspecialchars($_GET['correct']);
-                            
-                            
-                            echo "Your answer is " . $choice . "</br>";
-                            echo "Correct answer is" . $correct;
-                            
-                            
-                            // if($choice == $correct) {
-                            //     echo "<br>This is right answer.<br><br>";
-
-                            //     $_SESSION["score"] += 1;
-                            //     echo "Your score is " . $_SESSION["score"] . "<br>.";
+                        $_SESSION["score"] = 0;
                                 
-                            // } else {
-                            //     echo "<br>The right answer is <i>" . $correct . "</i>.";
-                            // }   
+                        if(isset($_GET['submit'])) {
+                            $choice = htmlspecialchars($_GET['choice']);                            
+                            $id = $question["questionID"]; 
+                            $correctFromDB = rightAnswer($id);
+                            $correct = $correctFromDB["answerText"];
+                            $score = $_SESSION["score"];     
+                            echo "Correct answer is " . $correct . '<br>';
+                            echo "Your answer is " . $choice . "</br>";
+                             if ($choice == $correct) {
+                                $score = $score + 1;
+                                echo "Your score: " . $score;
+                             } else {
+                                echo "Your score: " . $score;
+                             }
                         }
                     ?>
                     <?php } ?>
-                </ul>
-        </form>  
+                          
 </body>
 
 <script>
@@ -125,6 +116,24 @@
     //     }
     // }  
     // </script> 
+    <?php
+if(!empty($_POST['check_list']))
+{
+     foreach($_POST['check_list'] as $id){
+        echo "<br>$id was checked! ";
+     }
+}
+
+
+?>
+
+<form method="post" name="frm">
+<input type="radio" name="check_list[]" value="1"> 1
+<input type="radio" name="check_list[]" value="2"> 2
+<input type="radio" name="check_list[]" value="3"> 3
+<input type="radio" name="check_list[]" value="4"> 4
+<input type="submit" name="submit" />
+</form>
     </body>
 </html>
 

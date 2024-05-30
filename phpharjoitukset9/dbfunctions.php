@@ -86,3 +86,13 @@ function getQuestionById2($questionID){
     $all = $stm->fetch(PDO::FETCH_ASSOC);
     return $all;
 }
+function rightAnswer($answerID){
+    $pdo = connect();
+    $sql = "SELECT answerText FROM answers
+    INNER JOIN questions ON questions.questionID = answers.questionID
+    WHERE answerID = ?";
+    $stm= $pdo->prepare($sql);
+    $stm->execute([$answerID]);
+    $all = $stm->fetch(PDO::FETCH_ASSOC);
+    return $all;
+}
