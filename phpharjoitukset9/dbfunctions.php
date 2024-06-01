@@ -66,7 +66,7 @@ function getAllQuestions() {
 }
 function getAllAnswers() {
     $pdo = connect();
-    $sql = "SELECT questions.questionID, questionText, answers.correct, answers.answerID,
+    $sql = "SELECT questions.questionID, questionText, answers.correct, answers.answerID, answers.questionID, 
     answers.answerText AS answerText
     FROM questions
     INNER JOIN answers ON answers.questionID = questions.questionID;";
@@ -90,7 +90,8 @@ function rightAnswer($answerID){
     $pdo = connect();
     $sql = "SELECT answerText FROM answers
     INNER JOIN questions ON questions.questionID = answers.questionID
-    WHERE answerID = ?";
+    WHERE correct = 1 AND
+    questions.questionID = ?";
     $stm= $pdo->prepare($sql);
     $stm->execute([$answerID]);
     $all = $stm->fetch(PDO::FETCH_ASSOC);

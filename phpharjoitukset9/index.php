@@ -48,6 +48,8 @@
                                     
                                     <input class="answer-choice" type='radio' id='choice' name='choice' value='<?=$answer["answerText"]?>' />
                                     <label for='choice'><?= $answer["answerText"] ?></label>
+                                    <input class="answer-choice" type='hidden' id='questionIDa' name='questionIDa' value='<?=$answer["questionID"]?>' />
+                                    <label for='questionIDa'></label>
                                     
                                 </div>                       
                             <?php } ?>
@@ -58,121 +60,28 @@
                         
                     </form>
                         <?php
-                        
-                        $_SESSION["score"] = 0;
+                        $_SESSION["score"] == 0;
                                 
-                        if(isset($_GET['submit'])) {
-                            $choice = htmlspecialchars($_GET['choice']);                            
-                            $id = $question["questionID"]; 
-                            $correctFromDB = rightAnswer($id);
+                        if(isset($_GET['submit'], $_SESSION["score"])) {
+                            $choice = htmlspecialchars($_GET['choice']); 
+                            $questionIDa = htmlspecialchars($_GET['questionIDa']);                           
+                            $questionIDq = $question["questionID"]; 
+                            $correctFromDB = rightAnswer($questionIDq);
                             $correct = $correctFromDB["answerText"];
-                            $score = $_SESSION["score"];     
-                            echo "Correct answer is " . $correct . '<br>';
-                            echo "Your answer is " . $choice . "</br>";
+                            $score = $_SESSION["score"];    
+                            if($questionIDa == $questionIDq) {
+                                
+                                echo "Correct answer is " . $correct . '<br>';
+                                echo "Your answer is " . $choice . "</br>";
                              if ($choice == $correct) {
                                 $score = $score + 1;
                                 echo "Your score: " . $score;
                              } else {
                                 echo "Your score: " . $score;
                              }
+                            } 
                         }
                     ?>
                     <?php } ?>
                           
 </body>
-
-<script>
-    // function checkButton() {  
-    //         let correctValue =  document.getElementById("correct");
-            
-            
-    //         for (let i = 0; i < correctValue.length; i++) {
-    //             let getSelectedValue = document.querySelector('input[name="choice"]:checked'); 
-    //             let score = document.getElementById("score");
-    //             let scoreNumber = 0;
-    //             if(getSelectedValue != null) { 
-
-    //             document.getElementById("result").innerHTML 
-    //                 = "Your answer is " + getSelectedValue.value; 
-    //             document.getElementById("rightAnswer").innerHTML 
-    //                 = "Correct answer is " + correctValue[i].value; 
-    //                 console.log(correctValue[i].value);
-    //                 console.log(getSelectedValue.value);
-                    
-    //                 if (correctValue[i].value === getSelectedValue.value) {
-    //                     getSelectedValue.parentElement.classList.add('rightAnswer');
-    //                     scoreNumber++;
-    //                     score.innerHTML = 'Your score is ' + scoreNumber; 
-    //                 } else {
-                        
-    //                 getSelectedValue.parentElement.classList.add('wrongAnswer');
-    //                 score.innerHTML = 'Your score is ' + scoreNumber;
-    //                 }
-    //         } 
-    //         else { 
-    //             document.getElementById("error").innerHTML 
-    //                 = "*You have not selected any answer"; 
-    //         } 
-    //     }
-    // }  
-    // </script> 
-    <?php
-if(!empty($_POST['check_list']))
-{
-     foreach($_POST['check_list'] as $id){
-        echo "<br>$id was checked! ";
-     }
-}
-
-
-?>
-
-<form method="post" name="frm">
-<input type="radio" name="check_list[]" value="1"> 1
-<input type="radio" name="check_list[]" value="2"> 2
-<input type="radio" name="check_list[]" value="3"> 3
-<input type="radio" name="check_list[]" value="4"> 4
-<input type="submit" name="submit" />
-</form>
-    </body>
-</html>
-
-
-
-<script>
-            // for (let i = 0; i < allChoices.length; i++) {
-            //     
-            //     let userChoice = allChoices[i].checked;
-
-            //     if (correct === userChoice) {
-            //         event.preventDefault();
-            //         correct.classList.add('rightAnswer');
-            //         document.getElementById("result").innerHTML = "You have selected: " + inputContainer[i].value;
-                    
-                    
-                // } else {
-                //     userChoice.parentElement.classList.add('wrongAnswer');
-                    
-                //}
-        // }
-        // }
-
-    //     function selectedButton() {
-    //         let inputContainer = document.querySelectorAll(".answer-choice");
-    //         let correct = document.getElementById('correct').value;
-    //         console.log(correct);
-    //         for (let i = 0; i < inputContainer.length; i++) {
-                
-    //         if (inputContainer[i].checked) {
-    //             inputContainer[i].parentElement.classList.add('selected');
-    //             document.getElementById("result").innerHTML = "You have selected: " + inputContainer[i].value;
-                
-    //             document.getElementById("score").innerHTML = "Your score: ";
-    //         } else {
-    //             inputContainer[i].parentElement.classList.remove('selected');
-    //             event.preventDefault();
-    //         }
-    //     }
-    // }
-    
-    </script>
