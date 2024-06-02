@@ -73,8 +73,11 @@
                                 
                                 echo "Correct answer is " . $correct . '<br>';
                                 echo "Your answer is " . $choice . "</br>";
-                             if ($choice == $correct) {
-                                $score = $score + 1;
+
+                                if ($choice == $correct) {
+                                while($score <15) {
+                                    $score = $score + 1;
+                                }
                                 echo "Your score: " . $score;
                              } else {
                                 echo "Your score: " . $score;
@@ -85,3 +88,9 @@
                     <?php } ?>
                           
 </body>
+
+                                    // $i = 1;
+                                    // while($i <= 15) {
+                                        
+                                    //     echo "Your score: " . $score;
+                                    // }
