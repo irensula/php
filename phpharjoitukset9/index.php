@@ -32,7 +32,7 @@
                     foreach($questions as $question) {
                             
                         echo "<form action='index.php' method='get'>
-                            <ul><hr>
+                            <ul>
                                 <li>" . $question["questionText"];
                                 ?></li>
 
@@ -59,6 +59,7 @@
                         </ul>
                         
                     </form>
+                    <hr>
                         <?php
                         $_SESSION["score"] == 0;
                                 
