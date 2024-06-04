@@ -61,27 +61,24 @@
                     </form>
                     <hr>
                         <?php
-                        $_SESSION["score"] == 0;
-                                
+                              
                         if(isset($_GET['submit'], $_SESSION["score"])) {
                             $choice = htmlspecialchars($_GET['choice']); 
                             $questionIDa = htmlspecialchars($_GET['questionIDa']);                           
                             $questionIDq = $question["questionID"]; 
                             $correctFromDB = rightAnswer($questionIDq);
                             $correct = $correctFromDB["answerText"];
-                            $score = $_SESSION["score"];    
+       
                             if($questionIDa == $questionIDq) {
                                 
                                 echo "Correct answer is " . $correct . '<br>';
                                 echo "Your answer is " . $choice . "</br>";
 
                                 if ($choice == $correct) {
-                                while($score <15) {
-                                    $score = $score + 1;
-                                }
-                                echo "Your score: " . $score;
+                                    $_SESSION["score"]++;
+                                    echo "Your score: " . $_SESSION["score"] . "<hr>";;
                              } else {
-                                echo "Your score: " . $score;
+                                echo "Your score: " . $_SESSION["score"] . "<hr>";
                              }
                             } 
                         }
@@ -89,9 +86,3 @@
                     <?php } ?>
                           
 </body>
-
-                                    // $i = 1;
-                                    // while($i <= 15) {
-                                        
-                                    //     echo "Your score: " . $score;
-                                    // }
