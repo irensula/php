@@ -61,13 +61,8 @@ input:checked {
 .hidden {
   display: none;
 }
-/* input {
-  position: fixed;
-  opacity: 0;
-  pointer-events: none;
-} */
 /* button */
-.button {
+.button, .button-clear {
   align-items: center;
   background-clip: padding-box;
   background-color: #fa6400;
@@ -94,7 +89,9 @@ input:checked {
   width: auto;
   vertical-align: baseline;
 }
-
+.button-clear {
+ margin: 2em auto 3em auto;
+}
 .button:hover,
 .button-5:focus {
   background-color: #fb8332;
@@ -115,4 +112,7 @@ input:checked {
 }
 hr {
   margin: 2em 0;
+}
+.clear-form {
+  text-align: center;
 }

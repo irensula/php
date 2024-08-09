@@ -1,6 +1,7 @@
 <?php 
     require_once "./dbfunctions.php";
     session_start();
+    // $_SESSION["score"] = 0;
 ?>
 
 <!DOCTYPE html>
@@ -26,63 +27,81 @@
     
     <h2>How well do you know Friends?</h2>
 
-                <?php
-                    $questions = getAllQuestions();
+        <?php
+            $questions = getAllQuestions();
+                
+            foreach($questions as $question) {
+                    
+                echo "<form action='index.php' method='get'>
+                    <ul>
+                        <li>" . $question["questionText"];
+                        ?></li>
+
+                <?php 
+                
+                $answers = getAllAnswers();
+                    
+                foreach($answers as $answer) { 
+                
+                    if ($question["questionID"] == $answer["questionID"]) { ?>
                         
-                    foreach($questions as $question) {
+                        <div class="input-container">
                             
-                        echo "<form action='index.php' method='get'>
-                            <ul>
-                                <li>" . $question["questionText"];
-                                ?></li>
-
-                        <?php 
-                        
-                        $answers = getAllAnswers();
-                         
-                        foreach($answers as $answer) { 
-                        
-                            if ($question["questionID"] == $answer["questionID"]) { ?>
-                                
-                                <div class="input-container">
-                                    
-                                    <input class="answer-choice" type='radio' id='choice' name='choice' value='<?=$answer["answerText"]?>' />
-                                    <label for='choice'><?= $answer["answerText"] ?></label>
-                                    <input class="answer-choice" type='hidden' id='questionIDa' name='questionIDa' value='<?=$answer["questionID"]?>' />
-                                    <label for='questionIDa'></label>
-                                    
-                                </div>                       
-                            <?php } ?>
-                        <?php } ?>
-
-                        <button class="button" type="submit" name="submit" onclick="checkButton()"> Submit </button>
-                        </ul>
-                        
-                    </form>
-                    <hr>
-                        <?php
-                              
-                        if(isset($_GET['submit'], $_SESSION["score"])) {
-                            $choice = htmlspecialchars($_GET['choice']); 
-                            $questionIDa = htmlspecialchars($_GET['questionIDa']);                           
-                            $questionIDq = $question["questionID"]; 
-                            $correctFromDB = rightAnswer($questionIDq);
-                            $correct = $correctFromDB["answerText"];
-       
-                            if($questionIDa == $questionIDq) {
-                                
-                                echo "Correct answer is " . $correct . '<br>';
-                                echo "Your answer is " . $choice . "</br>";
-
-                                if ($choice == $correct) {
-                                    $_SESSION["score"]++;
-                                    echo "Your score: " . $_SESSION["score"] . "<hr>";;
-                             } else {
-                                echo "Your score: " . $_SESSION["score"] . "<hr>";
-                             }
-                            } 
-                        }
-                    ?>
+                            <input class="answer-choice" type='radio' id='choice' name='choice' value='<?=$answer["answerText"]?>' />
+                            <label for='choice'><?= $answer["answerText"] ?></label>
+                            <input class="answer-choice" type='hidden' id='questionIDa' name='questionIDa' value='<?=$answer["questionID"]?>' />
+                            <label for='questionIDa'></label>
+                            
+                        </div>                       
                     <?php } ?>
+                <?php } ?>
+
+                <button class="button" type="submit" name="submit"> Submit </button>
+                </ul>
+                
+            </form>
+            <hr>
+                <?php
+                if(!isset($_SESSION['score'])) {
+                    $_SESSION['score'] = 0;
+                }     
+                        
+                if(isset($_GET['submit'], $_SESSION["score"])) {
+                    $choice = htmlspecialchars($_GET['choice']); 
+                    $questionIDa = htmlspecialchars($_GET['questionIDa']);                           
+                    $questionIDq = $question["questionID"]; 
+                    $correctFromDB = rightAnswer($questionIDq);
+                    $correct = $correctFromDB["answerText"];
+
+                    if($questionIDa == $questionIDq) {
+                        
+                        echo "Correct answer is " . $correct . '<br>';
+                        echo "Your answer is " . $choice . "</br>";
+
+                        if ($choice == $correct) {
+                            $_SESSION["score"]++;
+                            echo "Your score: " . $_SESSION["score"] . "<hr>";;
+                        
+                                } else {
+                        echo "Your score: " . $_SESSION["score"] . "<hr>";
+                        }
+                    } 
+                }
+            ?>
+            <?php } ?>
+
+    <!-- destroy session button -->
+    <form action="index.php" method="POST" class="clear-form">
+        <label for='clear'></label>
+        <input class="button-clear" id='clear' name='clear' type="submit" value="Start Quiz Again">
+    </form>
+    
+    <?php
+        if(isset($_POST['clear'])) {
+            session_destroy();
+        }   
+    ?>
+
+
                           
 </body>
