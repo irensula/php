@@ -26,12 +26,12 @@
     
     <h2>How well do you know Friends?</h2>
 
-        <?php
+<?php
             $questions = getAllQuestions();
                 
             foreach($questions as $question) {
                     
-                echo "<form action='index.php' method='get'>
+                echo "<form action='index.php' method='POST'>
                     <ul>
                         <li>" . $question["questionText"];
                         ?></li>
@@ -64,15 +64,14 @@
                 if(!isset($_SESSION['score'])) {
                     $_SESSION['score'] = 0;
                 }     
-                        
-                // if(isset($_GET['submit'], $_SESSION["score"])) {
-                    if(isset($_GET['choice'], $_GET['questionIDa'], $_GET['submit'], $_SESSION["score"])) {
-
-                    $choice = htmlspecialchars($_GET['choice']); 
-                    $questionIDa = htmlspecialchars($_GET['questionIDa']);  // question ID from the Answers table                        
-                    $questionIDq = $question["questionID"]; // question ID from the Questions table
-                    $correctFromDB = rightAnswer($questionIDq); 
-                    $correct = $correctFromDB["answerText"];
+                    
+                if($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if(isset($_POST['choice'], $_POST['questionIDa'], $_SESSION["score"])) {
+                        $choice = htmlspecialchars($_POST['choice']); 
+                        $questionIDa = htmlspecialchars($_POST['questionIDa']);  // question ID from the Answers table                        
+                        $questionIDq = $question["questionID"]; // question ID from the Questions table
+                        $correctFromDB = rightAnswer($questionIDq); 
+                        $correct = $correctFromDB["answerText"];
 
                     if($questionIDa == $questionIDq) {
                         
@@ -85,25 +84,30 @@
                             
                                 } else {
                         echo "Your score: " . $_SESSION["score"] . "<hr>";
-                        }
                         
+                        }
+                        // header('Location:'.$_SERVER['PHP_SELF']);
                     } 
                 }
+                }
             ?>
-            <?php } ?>
+<?php } ?>
 
     <!-- destroy session button -->
     <form action="index.php" method="POST" class="clear-form">
         <label for='clear'></label>
         <input class="button-clear" id='clear' name='clear' type="submit" value="Start Quiz Again">
     </form>
-    
     <?php
         if(isset($_POST['clear'])) {
             session_destroy();
         }   
     ?>
+    <!-- to prevent double submit on refreshing page -->
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }           
+    </script>
 
-
-                          
 </body>
