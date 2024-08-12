@@ -27,6 +27,7 @@
     <h2>How well do you know Friends?</h2>
 
 <?php
+
             $questions = getAllQuestions();
                 
             foreach($questions as $question) {

@@ -31,7 +31,7 @@
                 
             foreach($questions as $question) {
                     
-                echo "<form action='index.php' method='POST'>
+                echo "<form action='index1.php' method='POST'>
                     <ul>
                         <li>" . $question["questionText"];
                         ?></li>
@@ -55,7 +55,7 @@
                     <?php } ?>
                 <?php } ?>
 
-                <button class="button" type="submit" name="submit"> Submit </button>
+                <button class="button" type="submit" name="button" onClick="showScore()"> Submit </button>
                 </ul>
                 
             </form>
@@ -106,7 +106,7 @@
 <?php } ?>
 
     <!-- destroy session button -->
-    <form action="index.php" method="POST" class="clear-form">
+    <form action="index1.php" method="POST" class="clear-form">
         <label for='clear'></label>
         <input class="button-clear" id='clear' name='clear' type="submit" value="Start Quiz Again">
     </form>
@@ -117,6 +117,10 @@
     ?>
     <!-- to prevent double submit on refreshing page -->
     <script>
+        showScore() {
+            alert "Your score is 1";
+        }
+        // to prevent double submit on refreshing page
         if ( window.history.replaceState ) {
             window.history.replaceState( null, null, window.location.href );
         }           
