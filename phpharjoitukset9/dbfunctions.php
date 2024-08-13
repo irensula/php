@@ -31,6 +31,17 @@ function getQuestionById($questionID){
     $all = $stm->fetch(PDO::FETCH_ASSOC);
     return $all;
 }
+
+function getQuestionsArray($arr){
+    $pdo = connect();
+    $ids = join("','",$arr);   
+    $sql = "SELECT * FROM questions WHERE questionID IN ('$ids')";
+    // $sql = "SELECT * FROM quiz WHERE quizID IN ($arr);";
+    $stm = $pdo->query($sql);
+    $questions = $stm->fetchAll(PDO::FETCH_ASSOC);
+    return $questions;
+}
+
 // function getTenQuestions() {
 //     $pdo = connect();
     
