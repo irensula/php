@@ -2,6 +2,17 @@
     require_once "./dbfunctions.php";
     session_start();
 ?>
+<?php
+
+if (!isset($_SESSION['random_var'])) {
+    $_SESSION['random_var'] = rand(1, 100); 
+    echo "Generated new random number: " . $_SESSION['random_var'];
+} else {
+    echo "Retrieved stored random number: " . $_SESSION['random_var'];
+}
+
+// session_destroy();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,107 +30,122 @@
     <title>Document</title>
 
 <body>
-
     <img src="friends.webp" alt="">
-    
     <h1>TIETOVISA</h1>
-    
     <h2>How well do you know Friends?</h2>
 
 <?php
-            $questions = getAllQuestions();
+        function generateArray() {
+            $array_numbers = range(1, 10);
+            shuffle($array_numbers);
+            $random_array = array_slice($array_numbers,0,10);
+            print_r($random_array);
+            // foreach($random_array as $item){
+            //     echo $item . "\n";
+            // } 
+        }
+            // $array_numbers = range(1, 15);
+            // shuffle($array_numbers);
+            // $random_array = array_slice($array_numbers,0,10);
+            // $_SESSION['randomArray'] = $random_array;
+            
+        if (!isset($_SESSION['randomArray'])){
+            $_SESSION['randomArray'] = generateArray();
+            echo print_r($_SESSION['randomArray']);
+        // $arr = range(1, 10);
+        $arr = [1,2,3,4,5,6,7,8,9,10];
+        $questions = getQuestionsArray($arr);
+        // $questions = getQuestionsArray($_SESSION['randomArray']);
+        foreach($questions as $question) {
                 
-            foreach($questions as $question) {
-                    
-                echo "<form action='index.php' method='POST'>
-                    <ul>
-                        <li>" . $question["questionText"];
-                        ?></li>
-
-                <?php 
-                
-                $answers = getAllAnswers();
-                    
-                foreach($answers as $answer) { 
-                
-                    if ($question["questionID"] == $answer["questionID"]) { ?>
+            echo "<form action='index.php' method='post'>
+                <ul>
+                    <li>" . $question["questionID"] . "." . $question["questionText"];
+                    ?></li>
+            <?php 
+            
+            $answers = getAllAnswers();
                         
-                        <div class="input-container">
+                    foreach($answers as $answer) { 
+                    
+                        if ($question["questionID"] == $answer["questionID"]) { ?>
                             
-                            <input class="answer-choice" type='radio' id='choice' name='choice' value='<?=$answer["answerText"]?>' />
-                            <label for='choice'><?= $answer["answerText"] ?></label>
-                            <input class="answer-choice" type='hidden' id='questionIDa' name='questionIDa' value='<?=$answer["questionID"]?>' />
-                            <label for='questionIDa'></label>
-                            
-                        </div>                       
+                            <div class="input-container">
+                                
+                                <input class="answer-choice" type='radio' id='choice' name='choice' value='<?=$answer["answerText"]?>' />
+                                <label for='choice'><?= $answer["answerText"] ?></label>
+                                <input class="answer-choice" type='hidden' id='questionIDa' name='questionIDa' value='<?=$answer["questionID"]?>' />
+                                <label for='questionIDa'></label>
+                                
+                            </div>                       
+                        <?php } ?>
                     <?php } ?>
-                <?php } ?>
-
-                <button class="button" type="submit" name="submit"> Submit </button>
-                </ul>
-                
-            </form>
-            <hr>
-                <?php
-                if(!isset($_SESSION['score'])) {
-                    $_SESSION['score'] = 0;
-                    $_SESSION['numberOfQuestions'] = 0;
-                }     
+    
+                    <button class="button" type="submit" name="submit"> Submit </button>
+                    </ul>
                     
-                if($_SERVER["REQUEST_METHOD"] == "POST") {
-                    if(isset($_POST['choice'], $_POST['questionIDa'], $_SESSION["score"])) {
-                        $choice = htmlspecialchars($_POST['choice']); 
-                        $questionIDa = htmlspecialchars($_POST['questionIDa']);  // question ID from the Answers table                        
-                        $questionIDq = $question["questionID"]; // question ID from the Questions table
-                        $correctFromDB = rightAnswer($questionIDq); 
-                        $correct = $correctFromDB["answerText"];
-
-                    if($questionIDa == $questionIDq) {
+                </form>
+                <hr>
+                    <?php
+                    if(!isset($_SESSION['score'])) {
+                        $_SESSION['score'] = 0;
+                        $_SESSION['numberOfQuestions'] = 0;
+                    }     
                         
-                        echo "Correct answer is " . $correct . '<br>';
-                        echo "Your answer is " . $choice . "</br>";
-
-                        if ($choice == $correct) {
-                            $_SESSION['numberOfQuestions']++;
-                            $_SESSION["score"]++;
-                            echo "Your score: " . $_SESSION["score"] . "/" . $_SESSION['numberOfQuestions'] . "<hr>";
-                                } else {
-                                    $_SESSION['numberOfQuestions']++;
-                                    echo "Your score: " . $_SESSION["score"] . "/" . $_SESSION['numberOfQuestions'] . "<hr>";
-                                    if($_SESSION['numberOfQuestions'] == 10) {
-                                        if($_SESSION["score"] <= 3) {
-                                            echo "Your score is " . $_SESSION["score"] . ". Maybe it's not your favourite TV-series.<br>";
-                                        } elseif ($_SESSION["score"] > 3 && $_SESSION["score"] <= 6) {
-                                            echo "Your score is " . $_SESSION["score"] . ". Well done!<br>";
-                                        } elseif ($_SESSION["score"] > 6 && $_SESSION["score"] < 10) {
-                                            echo "Your score is " . $_SESSION["score"] . ". Congratulations!<br>";
-                                        } elseif ($_SESSION["score"] = 10 ) {
-                                            echo "Your score is " . $_SESSION["score"] . ". Congratulations! You are 'Friends' expert! <br>";
-                                        }
+                    if($_SERVER["REQUEST_METHOD"] == "POST") {
+                        if(isset($_POST['choice'], $_POST['questionIDa'], $_SESSION["score"])) {
+                            $choice = htmlspecialchars($_POST['choice']); 
+                            $questionIDa = htmlspecialchars($_POST['questionIDa']);  // question ID from the Answers table                        
+                            $questionIDq = $question["questionID"]; // question ID from the Questions table
+                            $correctFromDB = rightAnswer($questionIDq); 
+                            $correct = $correctFromDB["answerText"];
+    
+                        if($questionIDa == $questionIDq) {
+                            
+                            echo "Correct answer is " . $correct . '<br>';
+                            echo "Your answer is " . $choice . "</br>";
+    
+                            if ($choice == $correct) {
+                                $_SESSION['numberOfQuestions']++;
+                                $_SESSION["score"]++;
+                                echo "Your score: " . $_SESSION["score"] . "/" . $_SESSION['numberOfQuestions'] . "<hr>";
+                                    } else {
+                                        $_SESSION['numberOfQuestions']++;
+                                        echo "Your score: " . $_SESSION["score"] . "/" . $_SESSION['numberOfQuestions'] . "<hr>";
                                     }
+                                        if($_SESSION['numberOfQuestions'] == 10) {
+                                            if($_SESSION["score"] <= 3) {
+                                                echo "Your score is " . $_SESSION["score"] . ". Maybe it's not your favourite TV-series.<br>";
+                                            } elseif ($_SESSION["score"] > 3 && $_SESSION["score"] <= 6) {
+                                                echo "Your score is " . $_SESSION["score"] . ". Well done!<br>";
+                                            } elseif ($_SESSION["score"] > 6 && $_SESSION["score"] < 10) {
+                                                echo "Your score is " . $_SESSION["score"] . ". Congratulations!<br>";
+                                            } elseif ($_SESSION["score"] = 10 ) {
+                                                echo "Your score is " . $_SESSION["score"] . ". Congratulations! You are 'Friends' expert! <br>";
+                                            }
+                                        }
+                             
                         } 
-                        // header('Location:'.$_SERVER['PHP_SELF']);
-                    } 
-                }
-                }
-            ?>
-<?php } ?>
-
-    <!-- destroy session button -->
-    <form action="index.php" method="POST" class="clear-form">
-        <label for='clear'></label>
-        <input class="button-clear" id='clear' name='clear' type="submit" value="Start Quiz Again">
-    </form>
-    <?php
-        if(isset($_POST['clear'])) {
-            session_destroy();
-        }   
-    ?>
-    <!-- to prevent double submit on refreshing page -->
-    <script>
-        if ( window.history.replaceState ) {
-            window.history.replaceState( null, null, window.location.href );
-        }           
-    </script>
-
-</body>
+                    }
+                    }
+                ?>
+                
+    <?php }} ?>
+    
+        <!-- destroy session button -->
+        <form action="index.php" method="POST" class="clear-form">
+            <label for='clear'></label>
+            <input class="button-clear" id='clear' name='clear' type="submit" value="Start Quiz Again">
+        </form>
+        <?php
+            if(isset($_POST['clear'])) {
+                session_destroy();
+            }   
+        ?>
+        <!-- to prevent double submit on refreshing page -->
+        <script>
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }           
+        </script>
+    </body>
