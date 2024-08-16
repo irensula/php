@@ -2,17 +2,6 @@
     require_once "./dbfunctions.php";
     session_start();
 ?>
-<?php
-
-if (!isset($_SESSION['random_var'])) {
-    $_SESSION['random_var'] = rand(1, 100); 
-    echo "Generated new random number: " . $_SESSION['random_var'];
-} else {
-    echo "Retrieved stored random number: " . $_SESSION['random_var'];
-}
-
-// session_destroy();
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,27 +24,19 @@ if (!isset($_SESSION['random_var'])) {
     <h2>How well do you know Friends?</h2>
 
 <?php
-        function generateArray() {
-            $array_numbers = range(1, 10);
-            shuffle($array_numbers);
-            $random_array = array_slice($array_numbers,0,10);
-            print_r($random_array);
-            // foreach($random_array as $item){
-            //     echo $item . "\n";
-            // } 
-        }
-            // $array_numbers = range(1, 15);
-            // shuffle($array_numbers);
-            // $random_array = array_slice($array_numbers,0,10);
-            // $_SESSION['randomArray'] = $random_array;
-            
-        if (!isset($_SESSION['randomArray'])){
-            $_SESSION['randomArray'] = generateArray();
-            echo print_r($_SESSION['randomArray']);
-        // $arr = range(1, 10);
-        $arr = [1,2,3,4,5,6,7,8,9,10];
-        $questions = getQuestionsArray($arr);
-        // $questions = getQuestionsArray($_SESSION['randomArray']);
+    if (!isset($_SESSION['random_array'])) {
+        $array_numbers = range(1, 15);
+        shuffle($array_numbers);
+        $array_numbers = array_slice($array_numbers,0,10);
+        $_SESSION['random_array'] = $array_numbers;
+        echo print_r($_SESSION['random_array']); 
+    } else {
+        echo print_r($_SESSION['random_array']);
+    }
+
+        // $arr = [1,2,3,4,5,6,7,8,9,10];
+        // $questions = getQuestionsArray($arr);
+        $questions = getQuestionsArray($_SESSION['random_array']);
         foreach($questions as $question) {
                 
             echo "<form action='index.php' method='post'>
@@ -130,7 +111,8 @@ if (!isset($_SESSION['random_var'])) {
                     }
                 ?>
                 
-    <?php }} ?>
+    <?php //}} ?>
+    <?php } ?>
     
         <!-- destroy session button -->
         <form action="index.php" method="POST" class="clear-form">
