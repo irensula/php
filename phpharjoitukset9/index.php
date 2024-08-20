@@ -16,6 +16,15 @@
     <!-- css -->
     <link rel="stylesheet" href="styles/reset.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="styles/main.css?v=<?php echo time(); ?>">
+
+    <script>
+        function disableSubmitButton() {
+            const submitButton = document.getElementById('submit-button');
+            submitButton.disabled = true;
+            submitButton.value = 'Submitting...'; // Change button text to indicate submission
+        }
+    </script>
+
     <title>Document</title>
 
 <body>
@@ -62,7 +71,7 @@
                         <?php } ?>
                     <?php } ?>
     
-                    <button class="button" type="submit" name="submit"> Submit </button>
+                    <button class="button" type="submit" name="submit" id="submit-button" onsubmit="disableSubmitButton()"> Submit </button>
                     </ul>
                     
                 </form>
@@ -130,4 +139,5 @@
                 window.history.replaceState( null, null, window.location.href );
             }           
         </script>
+        
     </body>
