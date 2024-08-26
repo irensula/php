@@ -41,22 +41,17 @@ li {
   border-radius: 15px;
 }
 .input-container:hover {
-  background-color: #96f97b;
+  background-color: #fadcc8;
 }
 input[type="radio"]:checked {
   color: #000;
+  background-color: #c85000;
 }
 input:checked {
   border: 6px solid black;
 }
-.selected {
-  background-color: #96f97b;
-}
-.rightAnswer {
-  background: #96f97b;
-}
-.wrongAnswer {
-  background: red;
+.active {
+  background-color: #fb8332;
 }
 .hidden {
   display: none;

@@ -16,15 +16,6 @@
     <!-- css -->
     <link rel="stylesheet" href="styles/reset.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="styles/main.css?v=<?php echo time(); ?>">
-
-    <script>
-        function disableSubmitButton() {
-            const submitButton = document.getElementById('submit-button');
-            submitButton.disabled = true;
-            submitButton.value = 'Submitting...'; // Change button text to indicate submission
-        }
-    </script>
-
     <title>Document</title>
 
 <body>
@@ -38,19 +29,21 @@
         shuffle($array_numbers);
         $array_numbers = array_slice($array_numbers,0,10);
         $_SESSION['random_array'] = $array_numbers;
-        echo print_r($_SESSION['random_array']); 
+        ob_start();
+        print_r($_SESSION['random_array']);
+        ob_end_clean();
     } else {
-        echo print_r($_SESSION['random_array']);
+        ob_start();
+        print_r($_SESSION['random_array']);
+        ob_end_clean();
     }
 
-        // $arr = [1,2,3,4,5,6,7,8,9,10];
-        // $questions = getQuestionsArray($arr);
         $questions = getQuestionsArray($_SESSION['random_array']);
         foreach($questions as $question) {
                 
             echo "<form action='index.php' method='post'>
-                <ul>
-                    <li>" . $question["questionID"] . "." . $question["questionText"];
+                <ul class='radiogroup'>
+                    <li>" . $question["questionID"] . ". " . $question["questionText"];
                     ?></li>
             <?php 
             
@@ -61,17 +54,15 @@
                         if ($question["questionID"] == $answer["questionID"]) { ?>
                             
                             <div class="input-container">
-                                
                                 <input class="answer-choice" type='radio' id='choice' name='choice' value='<?=$answer["answerText"]?>' />
                                 <label for='choice'><?= $answer["answerText"] ?></label>
                                 <input class="answer-choice" type='hidden' id='questionIDa' name='questionIDa' value='<?=$answer["questionID"]?>' />
                                 <label for='questionIDa'></label>
-                                
                             </div>                       
                         <?php } ?>
                     <?php } ?>
     
-                    <button class="button" type="submit" name="submit" id="submit-button" onsubmit="disableSubmitButton()"> Submit </button>
+                    <button class="button" type="submit" name="submit"> Submit </button>
                     </ul>
                     
                 </form>
@@ -131,13 +122,27 @@
         <?php
             if(isset($_POST['clear'])) {
                 session_destroy();
+                header('Location: index.php');
+                exit();
             }   
         ?>
-        <!-- to prevent double submit on refreshing page -->
+        
         <script>
+            document.querySelector('.radiogroup').addEventListener('change', (evt) => {
+                evt.currentTarget
+                    .querySelectorAll('.active')
+                    .forEach(element => {
+                    element.classList.remove('active')
+                    })
+                evt.target
+                    .closest('.input-container')
+                    .classList.add('active');
+                }, true);
+
+            // to prevent double submit on refreshing page
             if ( window.history.replaceState ) {
-                window.history.replaceState( null, null, window.location.href );
+                // window.history.replaceState( null, null, window.location.href );
+                window.history.replaceState( null, null, 'http://localhost:8888/index.php');
             }           
         </script>
-        
     </body>
