@@ -1,0 +1,35 @@
+/* FOOTER */
+
+footer {
+    height: 4em;
+    background: var(--dark-blue);
+    padding: 4em 0;
+    display: flex;
+    align-items: center;
+}
+
+.copyright {
+    flex: 3 1 0;
+    color: var(--yellow);
+    font-size: 1.1em;
+}
+
+.year {
+    margin: 0 1em 0 2em;
+}
+
+@media (max-width: 600px) {
+    footer {
+        flex-direction: column;
+        padding: 2em 1em 6em 2em;
+        align-items: flex-start;
+    }
+
+    footer .logo {
+        margin-bottom: 2em;
+    }
+
+    .year {
+        margin-left: 1em;
+    }
+}

@@ -1,0 +1,269 @@
+/* ILMOITUS */
+
+.form-title {
+    font-size: 2em;
+    color: var(--yellow);
+    margin: 1em 0;
+    text-transform: uppercase;
+}
+
+.application-container {
+    width: 40%;
+    margin: 2em auto;
+}
+
+.application-form {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    column-gap: 30px;
+}
+
+.input, select {
+    font-size: 15px;
+    line-height: 25px;
+    margin-bottom: 20px;
+    border-radius: 7px;
+    height: 35px;
+    width: 100%;
+    border: 1px solid var(--dark-blue);
+}
+.label {
+    display:inline-block;
+    color: var(--dark-blue);
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+textarea {
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 25px;
+    width: 100%;
+    resize: none;
+    height: 35px;
+}
+#day {
+    border: 1px solid var(--black);
+}
+a.day-today {
+    font-weight: 600;
+    font-size: 30px;
+}
+input::placeholder {
+    font-size: 20px;
+    line-height: 25px;
+}
+
+
+.hiddenEndDay {
+    display: none;
+}
+
+.visibleEndDay {
+    display: block;
+}
+
+.calendar.form {
+    width: 100%;
+    border-spacing: 10px;
+}
+.month.form {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.days-of-week.form {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.day.form,
+.day-enable.form {
+    width: 1.5em;
+    height: 1.5em;
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+.day-enable.form {
+    background-color: #79a9f6;
+}
+/* calendar */
+.day {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.start-date {
+    background-color: var(--dark-blue);
+    color: white;
+}
+
+.end-date {
+    background-color: var(--dark-blue);
+    color: white;
+}
+
+.in-range {
+    background-color: #5c7db0;
+    color: white;
+}
+/* PROFIILI */
+
+.theStudentInfo {
+    width: 30%;
+    margin: 5em auto;
+    line-height: 2em;
+}
+
+.buttons-container {
+    margin-top: 2em;
+}
+
+.student-info {
+    display: inline-block;
+    width: 10em;
+    font-weight: 600;
+}
+
+/* TABS */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+.tabcontent {
+
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.reservation-result {
+    margin: 1em 0;
+    font-size: 20px;
+    color: var(--yellow);
+    text-transform: uppercase;
+}
+
+.btn {
+    background-color: red;
+    border: none;
+    color: var(--white);
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+@media (max-width: 600px) {
+    .application-container {
+        width: 90%;
+    }
+}
+
+.theStudentInfo {
+    width: 80%;
+    height: auto;
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 2em;
+    border-radius: 10px;
+    margin: 5em auto;
+    line-height: 2em;
+    overflow: auto;
+}
+.theStudentInfoTexts {
+    width: 40%;
+    float: left;
+}
+.reservations{
+    float: left;
+}
+.all-reservation{
+    background-color: var(--yellow);
+    border-radius: 10px;
+    padding: 15px;
+    color: var(--white);
+    font-weight: 600;
+    width: 240px;
+    margin: 1em 1em 0 0;
+    float: left;
+    cursor: pointer;
+    height: 260px;
+}
+.accepted-reservation{
+    background-color: var(--yellow);
+    border-radius: 10px;
+    padding: 15px;
+    color: var(--white);
+    font-weight: 600;
+    width: 240px;
+    margin: 1em 1em 0 0;
+    float: left;
+    cursor: pointer;
+    height: 260px;
+}
+.reservations::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.history-table {
+    width: 90%;
+    margin: 50px auto 100px auto;
+}
+
+/* COMPUTERS */
+
+/* CLASSES */
+.pagination-button {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--yellow);
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--yellow);
+    font-weight: 600;
+}
+.pagination a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: black; /* Default color */
+}
+
+.pagination a.active {
+    font-weight: bold;
+    text-decoration: underline;
+    color: blue; 
+}
+
+.warning {
+    color: red;
+    display: none;
+    margin-bottom: 20px;
+}
