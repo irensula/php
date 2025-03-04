@@ -35,13 +35,6 @@ function makeApplicationController(){
         // Get available computers based on the query parameters
         $freeComputers = getFreeComputers($start_date, $end_date, $time);
     
-        if (!empty($freeComputers)) {
-            foreach ($freeComputers as $computer) {
-                echo "<div>" . htmlspecialchars($computer['numero']) . " - " . htmlspecialchars($computer['tietoja']) . "</div>";
-            }
-        } else {
-            echo "<p>No available computers found.</p>";
-        }
     } else {
         // Render the reservation form for selection
         require "View/addReservation.view.php";
@@ -71,15 +64,6 @@ function makeApplicationController(){
 
         // Get available computers based on the query parameters
         $freeComputers = getFreeComputers($start_date, $end_date, $time);
-
-        if (!empty($freeComputers)) {
-            // Display the list of available computers in the view
-            foreach ($freeComputers as $computer) {
-                echo "<div>" . htmlspecialchars($computer['numero']) . " - " . htmlspecialchars($computer['tietoja']) . "</div>";
-            }
-        } else {
-            echo "<p>No available computers found.</p>";
-        }
         
         // Handle reservation creation after selection
         if (isset($_POST['computer'], $_POST['description'])) {
