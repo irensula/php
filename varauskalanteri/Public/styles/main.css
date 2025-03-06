@@ -198,10 +198,25 @@ form p {
 /* MAIN CALENDAR */
 
 .container {
-    width: 50%;
-    margin: 30px auto 10px auto;
+    display: flex;
+    width: 100vw;
+    height: calc(100vh - 128px);
+    overflow: hidden;
 }
-
+.info-wrap {
+    flex: 1; 
+    width: calc(50% - 150px); 
+    height: 100%;
+    padding: 100px 0 0 150px;
+    box-sizing: border-box;
+}
+.main-image {
+    flex: 1; 
+    width: 50%; 
+    height: 100%;
+    background: url('../images/computer-learning-center.jpg') no-repeat center center;
+    background-size: cover;
+}
 .calendar {
     border-collapse: separate;
     border-spacing: 15px;
@@ -571,11 +586,8 @@ th {
 }
 
 /* MEDIA */
-@media (max-width: 1600px) {
-    .container {
-        width: 50%;
-    }
-}
+/* @media (max-width: 1600px) {
+} */
 
 @media (max-width: 1200px) {
     .calendar {
@@ -607,9 +619,6 @@ th {
     .calendar {
         width: 90%;
     }
-    .container {
-        width: 90%;
-    }
 
     .month {
         font-size: 0.8em;
@@ -634,9 +643,6 @@ th {
 @media (max-width: 350px) {
     .calendar {
         width: 100%;
-    }
-    .container {
-        width: 96%;
     }
 
     .month {
