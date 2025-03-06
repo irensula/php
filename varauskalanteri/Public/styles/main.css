@@ -199,19 +199,19 @@ form p {
 
 .container {
     display: flex;
-    width: 100vw;
+    width: calc(100wv - 100px);
     height: calc(100vh - 128px);
     overflow: hidden;
 }
 .info-wrap {
-    flex: 1; 
-    width: calc(50% - 150px); 
+    flex: 2; 
+    width: 45%; 
     height: 100%;
-    padding: 100px 0 0 150px;
+    padding: 100px 50px 0 200px;
     box-sizing: border-box;
 }
 .main-image {
-    flex: 1; 
+    flex: 3; 
     width: 50%; 
     height: 100%;
     background: url('../images/computer-learning-center.jpg') no-repeat center center;
