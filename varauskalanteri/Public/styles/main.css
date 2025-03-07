@@ -195,6 +195,10 @@ form p {
     margin: 0;
     font-weight: 400;
 }
+.bookbutton {
+    background-color: var(--yellow);
+    color: var(--white);
+}
 /* MAIN CALENDAR */
 
 .container {
